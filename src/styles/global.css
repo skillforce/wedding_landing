@@ -1,0 +1,65 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ivory: #f9f5ef;
+  --ivory2: #f3ede3;
+  --teal: #76d3bd;
+  --teal-dark: #4fb8a0;
+  --gold: #c9a84c;
+  --gold-bright: #e2b96a;
+  --navy: #111827;
+  --navy2: #1a2540;
+  --text-dark: #1c1a17;
+  --text-mid: #5a5145;
+  --text-soft: #9a8e80;
+  --border: #e2d9cc;
+}
+
+html.dark {
+  --ivory: #1a2540;
+  --ivory2: #111827;
+  --text-dark: #f0e8d8;
+  --text-mid: #9ba8c0;
+  --text-soft: #6a7a9a;
+  --border: #2a3450;
+  --teal-dark: #76d3bd;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--ivory);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  transition: background 0.2s;
+}
+button {
+  font: inherit;
+}
+
+.serif {
+  font-family: "Playfair Display", serif;
+}
+.script {
+  font-family: "Great Vibes", cursive;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}

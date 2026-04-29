@@ -1,0 +1,26 @@
+---
+import CtaSection from "../components/CtaSection.astro";
+import FeaturesSection from "../components/FeaturesSection.astro";
+import ForWhoSection from "../components/ForWhoSection.astro";
+import HeroSection from "../components/HeroSection.astro";
+import PricingSection from "../components/PricingSection.astro";
+import ReviewsSection from "../components/ReviewsSection/index.astro";
+import ShowcaseSection from "../components/ShowcaseSection/index.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { en } from "../i18n/translations";
+import Layout from "../layouts/Layout.astro";
+
+const t = en;
+---
+<Layout locale="en">
+  <SiteHeader t={t} />
+  <HeroSection t={t} />
+  <ReviewsSection locale={t.locale} />
+  <FeaturesSection t={t} />
+  <ShowcaseSection t={t} />
+  <PricingSection t={t} />
+  <ForWhoSection t={t} />
+  <CtaSection t={t} />
+  <SiteFooter t={t} />
+</Layout>

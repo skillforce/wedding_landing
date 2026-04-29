@@ -1,0 +1,40 @@
+---
+import type { Translations } from "../i18n/translations";
+import PricingCard from "./cards/PricingCard.astro";
+
+interface Props {
+  t: Translations;
+}
+const { t } = Astro.props;
+---
+<section class="pricing-section fade-in" id="pricing">
+  <div class="pricing-headline">
+    <h2 class="serif">{t.pricing.headline}</h2>
+    <p class="headline-script serif">{t.pricing.scriptLine}</p>
+  </div>
+
+  <div class="pricing-content">
+    <div class="pricing-cards">
+      {t.pricing.plans.map(plan => (
+        <PricingCard plan={plan} />
+      ))}
+    </div>
+
+    <div class="pricing-quote-card">
+      <div class="pricing-quote-label">WEDDING POST</div>
+      <p class="pricing-quote-text serif">"The best memories start with great planning."</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-section { padding: 72px 56px; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 200px 1fr; gap: 48px; }
+  .pricing-headline h2 { font-size: 32px; font-weight: 700; line-height: 1.25; margin-bottom: 10px; }
+  .pricing-headline .headline-script { font-style: italic; font-size: 17px; color: var(--gold); line-height: 1.4; white-space: pre-line; }
+  .pricing-content { position: relative; }
+  .pricing-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
+
+  .pricing-quote-card { position: absolute; right: -10px; top: 0; width: 155px; background: var(--navy); color: #fff; border-radius: 12px; padding: 18px 14px; font-size: 11px; line-height: 1.6; box-shadow: 0 8px 32px rgba(0,0,0,.15); }
+  .pricing-quote-label { font-size: 8.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .pricing-quote-text { font-style: italic; font-size: 12.5px; line-height: 1.6; color: rgba(255,255,255,.9); }
+</style>

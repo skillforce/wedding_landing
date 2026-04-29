@@ -1,0 +1,78 @@
+---
+import type { Translations } from "../i18n/translations";
+import LogoRings from "./icons/LogoRings.astro";
+
+interface Props {
+  t: Translations;
+}
+const { t } = Astro.props;
+const fn = t.footer.nav;
+
+const footerLinks = [
+  { label: fn.features, href: "#features" },
+  { label: fn.forWho, href: "#forwho" },
+  { label: fn.pricing, href: "#pricing" },
+  { label: fn.templates, href: "#" },
+  { label: fn.about, href: "#" },
+  { label: fn.blog, href: "#" },
+  { label: fn.help, href: "#" },
+];
+
+const socialLinks = [
+  { label: "𝕏", href: "#" },
+  { label: "in", href: "#" },
+  { label: "📸", href: "#" },
+  { label: "f", href: "#" },
+];
+---
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo-wrap">
+      <LogoRings size={32} showStar={false} />
+      <div>
+        <div class="footer-logo-dw serif">D&amp;W</div>
+        <div class="footer-logo-sub script">Doctor Wedding</div>
+      </div>
+    </a>
+
+    <nav class="footer-links">
+      {footerLinks.map(({ label, href }) => (
+        <a href={href}>{label}</a>
+      ))}
+    </nav>
+
+    <div class="footer-social">
+      {socialLinks.map(({ label, href }) => (
+        <a href={href} class="social-btn">{label}</a>
+      ))}
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>{t.footer.copyright}</p>
+    <p>{t.footer.tagline}</p>
+  </div>
+</footer>
+
+<style>
+  footer { padding: 40px 56px 24px; border-top: 1px solid var(--border); background: var(--ivory); transition: background 0.2s, border-color 0.2s; }
+  :global(html.dark) footer { background: var(--navy2); border-top-color: var(--border); }
+
+  .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 28px; }
+  .footer-logo-wrap { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .footer-logo-dw { font-size: 18px; font-weight: 700; color: var(--text-dark); }
+  .footer-logo-sub { font-size: 13px; color: var(--teal-dark); }
+  :global(html.dark) .footer-logo-sub { color: var(--gold); }
+
+  .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+  .footer-links a { font-size: 12.5px; color: var(--text-soft); text-decoration: none; transition: 0.15s; }
+  .footer-links a:hover { color: var(--text-dark); }
+
+  .footer-social { display: flex; gap: 10px; }
+  .social-btn { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--text-soft); text-decoration: none; transition: 0.2s; }
+  .social-btn:hover { border-color: var(--teal-dark); color: var(--teal-dark); }
+  :global(html.dark) .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .footer-bottom p { font-size: 11px; color: var(--text-soft); }
+</style>

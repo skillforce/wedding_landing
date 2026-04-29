@@ -1,0 +1,56 @@
+---
+import type { Review } from "./reviews.config";
+
+interface Props {
+  review: Review;
+}
+
+const { review } = Astro.props;
+---
+
+<article class="review-card">
+  <div class="review-profile">
+    <img class="review-photo" src={review.photo} alt={review.name} loading="lazy" />
+    <div class="review-head">
+      <h3 class="serif">{review.name}</h3>
+      <span class:list={['review-role', review.role]}>{review.role}</span>
+    </div>
+  </div>
+  <p>{review.review}</p>
+</article>
+
+<style>
+  .review-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 3px 16px rgba(0,0,0,.05);
+  }
+
+  .review-profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .review-photo {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--ivory2);
+  }
+
+  .review-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; min-width: 0; }
+  .review-head h3 { font-size: 16px; font-weight: 700; color: var(--text-dark); }
+  .review-role { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-soft); }
+  .review-role.couple { color: var(--teal-dark); }
+  .review-role.organizer { color: var(--gold); }
+  .review-card p { width: 100%; font-size: 13px; line-height: 1.65; color: var(--text-mid); text-wrap: balance }
+</style>

@@ -1,0 +1,38 @@
+---
+import type { Translations } from "../i18n/translations";
+import Button from "./base/Button.astro";
+import { ButtonType } from "./base/Button.types";
+import CtaFloralLeft from "./icons/CtaFloralLeft.astro";
+import CtaFloralRight from "./icons/CtaFloralRight.astro";
+import IconBoxPlus from "./icons/IconBoxPlus.astro";
+import IconStar from "./icons/IconStar.astro";
+
+interface Props {
+  t: Translations;
+}
+const { t } = Astro.props;
+---
+<section class="cta-section fade-in">
+  <CtaFloralLeft />
+  <CtaFloralRight />
+  <h2 class="serif">
+    {t.cta.headline}<br><em>{t.cta.headlineEm}</em>
+  </h2>
+  <p class="cta-sub serif">{t.cta.sub}</p>
+  <div class="cta-btns">
+    <Button type={ButtonType.Primary} size="lg">
+      <IconStar size={15} />{t.cta.ctaPrimary}
+    </Button>
+    <Button type={ButtonType.Secondary} size="lg">
+      <IconBoxPlus size={15} />{t.cta.ctaSecondary}
+    </Button>
+  </div>
+</section>
+
+<style>
+  .cta-section { padding: 90px 56px; text-align: center; background: var(--ivory); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .cta-section h2 { font-size: 44px; font-weight: 700; line-height: 1.2; max-width: 640px; margin: 0 auto 12px; }
+  .cta-section h2 em { font-style: italic; color: var(--teal-dark); }
+  .cta-sub { font-size: 14px; color: var(--text-soft); margin-bottom: 32px; font-style: italic; }
+  .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+</style>

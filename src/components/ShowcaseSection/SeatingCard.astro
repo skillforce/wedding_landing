@@ -1,0 +1,66 @@
+---
+import type { Translations } from "../../i18n/translations";
+
+type SeatingPanel = Translations["showcase"]["panels"]["seating"];
+
+interface Props {
+  panel: SeatingPanel;
+}
+
+const { panel } = Astro.props;
+const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-green"];
+---
+
+<div class="panel-card">
+  <div class="panel-header">
+    {panelDots.map(dotClass => <div class:list={['panel-dot', dotClass]}></div>)}
+    <span class="panel-title">{panel.title}</span>
+  </div>
+  <div class="panel-body">
+    <div class="seat-grid">
+      <div class="seat-table">
+        <div class="seat-table-oval">T1</div>
+        <div class="seat-dot-row">
+          <div class="seat-dot filled"></div><div class="seat-dot filled"></div><div class="seat-dot filled"></div><div class="seat-dot"></div>
+        </div>
+      </div>
+      <div class="seat-table">
+        <div class="seat-table-oval gold-border">T2</div>
+        <div class="seat-dot-row">
+          <div class="seat-dot filled gold-dot"></div><div class="seat-dot filled gold-dot"></div><div class="seat-dot"></div><div class="seat-dot"></div>
+        </div>
+      </div>
+      <div class="seat-table">
+        <div class="seat-table-oval">T3</div>
+        <div class="seat-dot-row">
+          <div class="seat-dot filled"></div><div class="seat-dot filled"></div><div class="seat-dot filled"></div><div class="seat-dot filled"></div>
+        </div>
+      </div>
+    </div>
+    <div class="seat-summary">
+      <span>{panel.tables}</span>
+      <span>{panel.guests}</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .panel-card { background: #fff; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 3px 16px rgba(0,0,0,.06); }
+  .panel-header { padding: 10px 14px; background: var(--ivory); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 6px; }
+  .panel-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .panel-dot-red { background: #ff5f57; }
+  .panel-dot-yellow { background: #ffbd2e; }
+  .panel-dot-green { background: #28ca41; }
+  .panel-title { font-size: 11px; font-weight: 600; color: var(--text-mid); margin-left: 4px; }
+  .panel-body { padding: 14px; }
+
+  .seat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px; }
+  .seat-dot-row { display: flex; gap: 2px; margin-top: 4px; }
+  .seat-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--teal-dark); opacity: 0.3; }
+  .seat-dot.filled { opacity: 1; }
+  .seat-dot.gold-dot { background: var(--gold); }
+  .seat-table { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px; border: 1px solid var(--border); border-radius: 8px; background: #fff; font-size: 9px; color: var(--text-soft); }
+  .seat-table-oval { width: 36px; height: 22px; border-radius: 50%; border: 1.5px solid var(--teal-dark); display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; color: var(--teal-dark); }
+  .seat-table-oval.gold-border { border-color: var(--gold); }
+  .seat-summary { display: flex; justify-content: space-between; font-size: 9px; color: var(--text-soft); }
+</style>

@@ -1,0 +1,76 @@
+---
+import ReviewCard from "./ReviewCard.astro";
+import { type ReviewLocale, reviews } from "./reviews.config";
+
+interface Props {
+  locale: ReviewLocale;
+}
+
+const { locale } = Astro.props;
+const sectionReviews = reviews[locale];
+const copy =
+  locale === "ru"
+    ? {
+        eyebrow: "Отзывы пользователей",
+        headline: "Пары и организаторы планируют спокойнее",
+        scriptLine: "Меньше хаоса\nбольше ясности",
+      }
+    : {
+        eyebrow: "User reviews",
+        headline: "Couples and planners stay in sync",
+        scriptLine: "Less chaos\nmore clarity",
+      };
+---
+
+<section class="reviews-section fade-in" id="reviews">
+  <div class="reviews-creep-line"></div>
+  <div class="reviews-headline">
+    <p class="reviews-eyebrow">{copy.eyebrow}</p>
+    <h2 class="serif">{copy.headline}</h2>
+    <p class="headline-script serif">{copy.scriptLine}</p>
+  </div>
+  <div class="reviews-grid">
+    {sectionReviews.map(review => <ReviewCard review={review} />)}
+  </div>
+</section>
+
+<style>
+  .reviews-section {
+    position: relative;
+    overflow: hidden;
+    padding: 72px 56px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--ivory2);
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .reviews-creep-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--teal-dark), var(--gold), transparent);
+    animation: reviews-creep 4.5s linear infinite;
+    opacity: 0.45;
+  }
+
+  :global(html.dark) .reviews-creep-line {
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-bright), transparent);
+  }
+
+  .reviews-headline { position: sticky; top: 80px; align-self: start; }
+  .reviews-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-soft); margin-bottom: 12px; }
+  .reviews-headline h2 { font-size: 30px; font-weight: 700; line-height: 1.25; margin-bottom: 12px; }
+  .headline-script { font-style: italic; color: var(--teal-dark); font-size: 16px; line-height: 1.45; white-space: pre-line; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+
+  @keyframes reviews-creep {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+</style>

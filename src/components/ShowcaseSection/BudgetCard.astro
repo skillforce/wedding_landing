@@ -1,0 +1,59 @@
+---
+import type { Translations } from "../../i18n/translations";
+
+type BudgetPanel = Translations["showcase"]["panels"]["budget"];
+
+interface Props {
+  panel: BudgetPanel;
+}
+
+const { panel } = Astro.props;
+const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-green"];
+---
+
+<div class="panel-card">
+  <div class="panel-header">
+    {panelDots.map(dotClass => <div class:list={['panel-dot', dotClass]}></div>)}
+    <span class="panel-title">{panel.title}</span>
+  </div>
+  <div class="panel-body">
+    <div class="budget-total serif">$25,800</div>
+    {panel.categories.map((cat, i) => (
+      <div class="budget-row">
+        <span class="budget-cat">{cat.name}</span>
+        <span>
+          <span class="budget-amt">{cat.spent}</span>{' '}
+          <span class:list={['budget-limit', { gold: i === 3 }]}>{cat.limit}</span>
+        </span>
+      </div>
+    ))}
+    <div class="budget-chart">
+      {[1, 2, 3, 4, 5].map(seg => <div class:list={['budget-seg', `budget-seg-${seg}`]}></div>)}
+    </div>
+  </div>
+</div>
+
+<style>
+  .panel-card { background: #fff; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 3px 16px rgba(0,0,0,.06); }
+  .panel-header { padding: 10px 14px; background: var(--ivory); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 6px; }
+  .panel-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .panel-dot-red { background: #ff5f57; }
+  .panel-dot-yellow { background: #ffbd2e; }
+  .panel-dot-green { background: #28ca41; }
+  .panel-title { font-size: 11px; font-weight: 600; color: var(--text-mid); margin-left: 4px; }
+  .panel-body { padding: 14px; }
+
+  .budget-total { font-size: 22px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+  .budget-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--ivory2); font-size: 10px; }
+  .budget-cat { color: var(--text-mid); }
+  .budget-amt { font-weight: 600; color: var(--text-dark); }
+  .budget-limit { font-size: 9px; color: var(--teal-dark); }
+  .budget-limit.gold { color: var(--gold); }
+  .budget-chart { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 10px; gap: 2px; }
+  .budget-seg { height: 100%; border-radius: 2px; }
+  .budget-seg-1 { width: 31%; background: var(--teal-dark); }
+  .budget-seg-2 { width: 29%; background: var(--gold); }
+  .budget-seg-3 { width: 12%; background: #b8943f; }
+  .budget-seg-4 { width: 15%; background: #9ba8c0; }
+  .budget-seg-5 { width: 13%; background: var(--border); }
+</style>

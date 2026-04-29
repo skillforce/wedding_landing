@@ -1,0 +1,52 @@
+---
+import type { Translations } from "../../i18n/translations";
+
+type TimelinePanel = Translations["showcase"]["panels"]["timeline"];
+
+interface Props {
+  panel: TimelinePanel;
+}
+
+const { panel } = Astro.props;
+const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-green"];
+---
+
+<div class="panel-card">
+  <div class="panel-header">
+    {panelDots.map(dotClass => <div class:list={['panel-dot', dotClass]}></div>)}
+    <span class="panel-title">{panel.title}</span>
+  </div>
+  <div class="panel-body">
+    {panel.events.map((ev, i) => (
+      <div class:list={['timeline-row', { active: i === 2 }]}>
+        <span class:list={['timeline-time', { active: i === 2 }]}>{ev.time}</span>
+        <div class:list={['timeline-bar', `timeline-bar-${i}`]}></div>
+        <span class:list={['timeline-label', { active: i === 2 }]}>{ev.label}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .panel-card { background: #fff; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 3px 16px rgba(0,0,0,.06); }
+  .panel-header { padding: 10px 14px; background: var(--ivory); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 6px; }
+  .panel-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .panel-dot-red { background: #ff5f57; }
+  .panel-dot-yellow { background: #ffbd2e; }
+  .panel-dot-green { background: #28ca41; }
+  .panel-title { font-size: 11px; font-weight: 600; color: var(--text-mid); margin-left: 4px; }
+  .panel-body { padding: 14px; }
+
+  .timeline-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--ivory2); }
+  .timeline-row.active { background: rgba(118,211,189,.1); }
+  .timeline-time { font-size: 9px; font-weight: 700; color: var(--text-soft); width: 36px; flex-shrink: 0; }
+  .timeline-time.active { color: var(--teal-dark); }
+  .timeline-bar { height: 10px; border-radius: 4px; opacity: .7; }
+  .timeline-bar-0 { width: 90%; background: #76d3bd; }
+  .timeline-bar-1 { width: 60%; background: #c9a84c; }
+  .timeline-bar-2 { width: 100%; background: var(--teal-dark); opacity: 1; }
+  .timeline-bar-3 { width: 50%; background: #b8943f; }
+  .timeline-bar-4 { width: 75%; background: #9ba8c0; }
+  .timeline-label { font-size: 9px; color: var(--text-mid); margin-left: 4px; }
+  .timeline-label.active { color: var(--teal-dark); font-weight: 600; }
+</style>

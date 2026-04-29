@@ -1,0 +1,112 @@
+---
+import { Toggle } from "astro-theme-toggle/components";
+import type { Translations } from "../i18n/translations";
+import LogoRings from "./icons/LogoRings.astro";
+
+interface Props {
+  t: Translations;
+}
+const { t } = Astro.props;
+
+const navLinks = [
+  { label: t.nav.features, href: "#features" },
+  { label: t.nav.forWho, href: "#forwho" },
+  { label: t.nav.pricing, href: "#pricing" },
+];
+---
+<header>
+  <a href="/" class="logo">
+    <LogoRings />
+    <div class="logo-text">
+      <span class="logo-dw serif">D<span class="logo-amp">&amp;</span>W</span>
+      <span class="logo-sub script">Doctor Wedding</span>
+    </div>
+  </a>
+
+  <nav>
+    {navLinks.map(({ label, href }) => (
+      <a class="nav-item" href={href}>{label}</a>
+    ))}
+  </nav>
+
+  <div class="header-controls">
+    <div class="lang-toggle">
+      <a class:list={['lang-btn', { active: t.locale === 'en' }]} href="/">EN</a>
+      <a class:list={['lang-btn', { active: t.locale === 'ru' }]} href="/ru">RU</a>
+    </div>
+    <div class="theme-toggle">
+      <Toggle class="theme-toggle-icon" />
+    </div>
+  </div>
+</header>
+
+<style>
+  header {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 14px 32px;
+    background: transparent;
+    justify-content:space-between ;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    transition: color 0.2s;
+
+    @media (max-width: 768px) {
+      gap: 10px;
+    }
+  }
+
+  .header-controls {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    gap: 10px; margin-left: auto;
+  }
+  .logo,
+  nav {
+    background: rgba(255,255,255,.42);
+    border: 1px solid rgba(255,255,255,.5);
+    backdrop-filter: blur(12px);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  :global(html.dark) .logo,
+  :global(html.dark) nav {
+    background: rgba(17,24,39,.38);
+    border-color: rgba(255,255,255,.16);
+  }
+  .logo {
+    display: flex; align-items: center; gap: 8px;
+    padding: 5px 12px 5px 8px;
+    border-radius: 24px;
+    text-decoration: none; flex-shrink: 0;
+  }
+  .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+  .logo-dw { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--text-dark); text-shadow: 0 1px 12px rgba(255,255,255,.7); transition: color 0.2s; }
+  .logo-amp { font-size: .8em; vertical-align: super; font-weight: 400; }
+  .logo-sub { font-size: 16px; opacity: 0.85; margin-top: -2px; color: var(--teal-dark); text-shadow: 0 1px 12px rgba(255,255,255,.7); transition: color 0.2s; }
+  :global(html.dark) .logo-dw { color: #fff; text-shadow: 0 1px 14px rgba(0,0,0,.45); }
+  :global(html.dark) .logo-sub { color: var(--gold); }
+
+  nav {
+    display: flex; gap: 0; align-items: center;
+    padding: 4px;
+    border-radius: 22px;
+  }
+  .nav-item { padding: 7px 14px; border-radius: 18px; text-decoration: none; font-size: 13px; font-weight: 600; color: var(--text-dark); white-space: nowrap; text-shadow: 0 1px 12px rgba(255,255,255,.7); transition: color 0.15s, background 0.15s; }
+  .nav-item:hover { color: var(--teal-dark); }
+  :global(html.dark) .nav-item { color: #fff; text-shadow: 0 1px 14px rgba(0,0,0,.45); }
+  :global(html.dark) .nav-item:hover { color: var(--gold); }
+
+  .lang-toggle { display: flex; align-items: center; gap: 2px; background: rgba(255,255,255,.42); border: 1px solid rgba(255,255,255,.5); border-radius: 20px; padding: 3px; flex-shrink: 0; backdrop-filter: blur(12px); transition: background 0.2s, border-color 0.2s; }
+  :global(html.dark) .lang-toggle { background: rgba(17,24,39,.38); border-color: rgba(255,255,255,.16); }
+  .lang-btn { padding: 4px 10px; border-radius: 16px; border: none; background: transparent; color: var(--text-soft); font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-block; }
+  :global(html.dark) .lang-btn { color: #aaa; }
+  .lang-btn.active { background: var(--navy); color: #fff; }
+  :global(html.dark) .lang-btn.active { background: #fff; color: var(--navy); }
+
+  .theme-toggle { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: rgba(255,255,255,.42); border: 1px solid rgba(255,255,255,.5); border-radius: 20px; cursor: pointer; transition: 0.2s; color: var(--text-dark); backdrop-filter: blur(12px); }
+  .theme-toggle:hover { background: rgba(255,255,255,.62); }
+  :global(html.dark) .theme-toggle { background: rgba(17,24,39,.38); border-color: rgba(255,255,255,.16); color: #fff; }
+  :global(html.dark) .theme-toggle:hover { background: rgba(17,24,39,.58); }
+  :global(.theme-toggle-icon) { width: 18px; height: 18px; }
+</style>

@@ -1,0 +1,28 @@
+---
+import type { Translations } from "../i18n/translations";
+import FeatureCard from "./cards/FeatureCard.astro";
+
+interface Props {
+  t: Translations;
+}
+const { t } = Astro.props;
+---
+<section class="features-section fade-in" id="features">
+  <div class="features-headline">
+    <h2 class="serif">{t.features.headline}</h2>
+    <p class="headline-script serif">{t.features.scriptLine}</p>
+  </div>
+  <div class="features-cards">
+    {t.features.cards.map(card => (
+      <FeatureCard card={card} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .features-section { display: grid; grid-template-columns: 200px 1fr; gap: 40px; padding: 72px 56px; border-bottom: 1px solid var(--border); }
+  .features-headline { position: sticky; top: 80px; align-self: start; }
+  .features-headline h2 { font-size: 32px; font-weight: 700; line-height: 1.25; }
+  .headline-script { font-style: italic; color: var(--teal-dark); font-size: 17px; margin-top: 12px; line-height: 1.4; white-space: pre-line; }
+  .features-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+</style>

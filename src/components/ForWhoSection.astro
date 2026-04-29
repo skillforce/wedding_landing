@@ -1,0 +1,28 @@
+---
+import type { Translations } from "../i18n/translations";
+import ForWhoCard from "./cards/ForWhoCard.astro";
+
+interface Props {
+  t: Translations;
+}
+const { t } = Astro.props;
+---
+<section class="forwho-section fade-in" id="forwho">
+  <div class="forwho-headline">
+    <h2 class="serif">{t.forWho.headline}</h2>
+    <p class="headline-script serif">{t.forWho.scriptLine}</p>
+  </div>
+  <div class="forwho-cards">
+    {t.forWho.cards.map(card => (
+      <ForWhoCard card={card} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .forwho-section { padding: 72px 56px; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 200px 1fr; gap: 48px; background: var(--ivory2); }
+  .forwho-headline h2 { font-size: 32px; font-weight: 700; line-height: 1.25; margin-bottom: 8px; }
+  .forwho-headline .headline-script { font-size: 15px; margin-top: 10px; line-height: 1.5; }
+  .headline-script { font-style: italic; color: var(--teal-dark); white-space: pre-line; }
+  .forwho-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+</style>
