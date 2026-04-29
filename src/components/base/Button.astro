@@ -39,9 +39,12 @@ const {
     transition: 0.2s;
   }
 
-  .button-md { gap: 8px; padding: 11px 22px; border-radius: 6px; font-size: 13.5px; }
+  .button-md { gap: 8px; padding: 11px 22px; border-radius: 8px; font-size: 13.5px; }
   .button-lg { gap: 8px; padding: 13px 28px; border-radius: 8px; font-size: 14px; }
   .button-compact { gap: 6px; padding: 11px; border-radius: 8px; font-size: 13px; }
+  .button-secondary.button-md { border-radius: 8px; }
+  .button-secondary.button-lg { border-radius: 8px; }
+  .button-secondary.button-compact { border-radius: 18px; }
   .button-full { width: 100%; }
 
   .button-primary { background: var(--teal-dark); color: #fff; }
@@ -50,19 +53,65 @@ const {
   :global(html.dark) .button-primary:hover { background: var(--gold-bright); }
 
   .button-secondary {
-    background: transparent;
-    border: 1.5px solid var(--text-dark);
-    color: var(--text-dark);
-  }
-  .button-secondary:hover { background: rgba(0,0,0,.05); }
-  .button-secondary.button-compact.button-full {
-    background: var(--ivory2);
+    background: rgba(255,255,255,.42);
+    background: color-mix(in srgb, var(--ivory) 58%, transparent);
     border: 1px solid var(--border);
+    border-color: color-mix(in srgb, var(--teal-dark) 38%, var(--border));
+    color: var(--text-dark);
+    text-shadow: 0 1px 12px rgba(255,255,255,.7);
+    box-shadow: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
-  .button-secondary.button-compact.button-full:hover { background: var(--border); }
+  .button-secondary:hover {
+    background: rgba(255,255,255,.62);
+    background: color-mix(in srgb, var(--ivory) 76%, transparent);
+    border-color: color-mix(in srgb, var(--teal-dark) 58%, var(--border));
+    color: var(--teal-dark);
+  }
   :global(html.dark) .button-secondary {
-    border-color: rgba(255,255,255,.35);
+    background: rgba(17,24,39,.38);
+    background: color-mix(in srgb, var(--ivory2) 58%, transparent);
+    border-color: color-mix(in srgb, var(--teal-dark) 34%, var(--border));
     color: #fff;
+    text-shadow: 0 1px 14px rgba(0,0,0,.45);
   }
-  :global(html.dark) .button-secondary:hover { background: rgba(255,255,255,.07); }
+  :global(html.dark) .button-secondary:hover {
+    background: rgba(17,24,39,.58);
+    background: color-mix(in srgb, var(--ivory) 72%, transparent);
+    border-color: color-mix(in srgb, var(--gold) 54%, var(--border));
+    color: var(--gold);
+  }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .button-secondary {
+      background: var(--ivory);
+      border-color: color-mix(in srgb, var(--teal-dark) 46%, var(--border));
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+      text-shadow: none;
+    }
+
+    .button-secondary:hover {
+      background: var(--ivory2);
+      border-color: color-mix(in srgb, var(--teal-dark) 66%, var(--border));
+    }
+
+    :global(html.dark) .button-secondary {
+      background: var(--ivory2);
+      border-color: color-mix(in srgb, var(--teal-dark) 42%, var(--border));
+      box-shadow: 0 8px 22px rgba(0,0,0,.22);
+      text-shadow: none;
+    }
+
+    :global(html.dark) .button-secondary:hover {
+      background: var(--ivory);
+      border-color: color-mix(in srgb, var(--gold) 58%, var(--border));
+    }
+  }
+
+  @media (max-width: 480px) {
+    .button { min-width: 0; }
+    .button-md { padding: 10px 16px; font-size: 13px; }
+    .button-lg { padding: 12px 18px; font-size: 13.5px; }
+  }
 </style>

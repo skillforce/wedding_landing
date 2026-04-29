@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { panel } = Astro.props;
-const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-green"];
+const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
 ---
 
 <div class="panel-card">
@@ -33,20 +33,34 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-green"];
   .panel-dot { width: 8px; height: 8px; border-radius: 50%; }
   .panel-dot-red { background: #ff5f57; }
   .panel-dot-yellow { background: #ffbd2e; }
-  .panel-dot-green { background: #28ca41; }
+  .panel-dot-gold { background: #c9a84c; }
   .panel-title { font-size: 11px; font-weight: 600; color: var(--text-mid); margin-left: 4px; }
   .panel-body { padding: 14px; }
 
   .timeline-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--ivory2); }
-  .timeline-row.active { background: rgba(118,211,189,.1); }
+  .timeline-row.active { background: rgba(217,185,140,.14); }
   .timeline-time { font-size: 9px; font-weight: 700; color: var(--text-soft); width: 36px; flex-shrink: 0; }
   .timeline-time.active { color: var(--teal-dark); }
   .timeline-bar { height: 10px; border-radius: 4px; opacity: .7; }
-  .timeline-bar-0 { width: 90%; background: #76d3bd; }
+  .timeline-bar-0 { width: 90%; background: #d9b98c; }
   .timeline-bar-1 { width: 60%; background: #c9a84c; }
   .timeline-bar-2 { width: 100%; background: var(--teal-dark); opacity: 1; }
   .timeline-bar-3 { width: 50%; background: #b8943f; }
   .timeline-bar-4 { width: 75%; background: #9ba8c0; }
   .timeline-label { font-size: 9px; color: var(--text-mid); margin-left: 4px; }
   .timeline-label.active { color: var(--teal-dark); font-weight: 600; }
+  :global(html.dark) .panel-card { background: rgba(26,37,64,.92); border-color: rgba(184,148,63,.22); box-shadow: 0 8px 28px rgba(0,0,0,.18); }
+  :global(html.dark) .panel-header { background: rgba(17,24,39,.62); border-bottom-color: rgba(184,148,63,.18); }
+  :global(html.dark) .timeline-row { border-bottom-color: rgba(255,255,255,.08); }
+  :global(html.dark) .timeline-row.active { background: rgba(201,168,76,.1); }
+  :global(html.dark) .timeline-time.active,
+  :global(html.dark) .timeline-label.active { color: var(--gold); }
+
+  @media (max-width: 480px) {
+    .panel-header { padding: 9px 12px; }
+    .panel-body { padding: 12px; }
+    .timeline-row { gap: 6px; }
+    .timeline-time { width: 32px; }
+    .timeline-label { margin-left: 0; }
+  }
 </style>

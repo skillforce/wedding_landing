@@ -369,7 +369,7 @@ export const ru: Translations = {
 
   features: {
     headline: "Всё что нужно — в одном месте",
-    scriptLine: "Everything\nyou need,\nbeautifully\norganized",
+    scriptLine: "Everything you need, beautifully organized",
     cards: [
       {
         icon: "👥",

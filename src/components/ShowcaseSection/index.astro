@@ -30,4 +30,25 @@ const { panels } = t.showcase;
   .showcase-text .headline-script { font-style: italic; color: var(--teal-dark); font-size: 17px; margin: 10px 0 14px; line-height: 1.4; white-space: pre-line; }
   .showcase-text a { font-size: 13px; color: var(--teal-dark); font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 4px; }
   .showcase-panels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+  @media (max-width: 1080px) {
+    .showcase-section { grid-template-columns: 190px 1fr; gap: 28px; padding: 64px 36px; }
+    .showcase-panels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 760px) {
+    .showcase-section { grid-template-columns: 1fr; gap: 24px; padding: 56px 24px; }
+    .showcase-text { text-align: center; }
+    .showcase-text h2 { font-size: 26px; }
+    .showcase-text .headline-script { text-align: center; white-space: normal; text-wrap: balance; }
+    .showcase-text a { justify-content: center; }
+    .showcase-panels { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .showcase-section { padding: 48px 16px; }
+    .showcase-text h2 { font-size: 24px; }
+    .showcase-text .headline-script { font-size: 15px; }
+    .showcase-panels { gap: 12px; }
+  }
 </style>

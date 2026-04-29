@@ -35,4 +35,17 @@ const { t } = Astro.props;
   .cta-section h2 em { font-style: italic; color: var(--teal-dark); }
   .cta-sub { font-size: 14px; color: var(--text-soft); margin-bottom: 32px; font-style: italic; }
   .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  @media (max-width: 760px) {
+    .cta-section { padding: 72px 24px; }
+    .cta-section h2 { font-size: 34px; }
+  }
+
+  @media (max-width: 480px) {
+    .cta-section { padding: 60px 16px; }
+    .cta-section h2 { font-size: 28px; }
+    .cta-sub { font-size: 13px; line-height: 1.5; margin-bottom: 24px; }
+    .cta-btns { gap: 10px; }
+    .cta-btns :global(.button) { width: 100%; }
+  }
 </style>

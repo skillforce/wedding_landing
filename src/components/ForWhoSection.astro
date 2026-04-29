@@ -20,9 +20,29 @@ const { t } = Astro.props;
 </section>
 
 <style>
-  .forwho-section { padding: 72px 56px; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 200px 1fr; gap: 48px; background: var(--ivory2); }
+  .forwho-section { padding: 72px 56px; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr; gap: 32px; background: var(--ivory2); }
+  .forwho-headline { max-width: 520px; }
   .forwho-headline h2 { font-size: 32px; font-weight: 700; line-height: 1.25; margin-bottom: 8px; }
   .forwho-headline .headline-script { font-size: 15px; margin-top: 10px; line-height: 1.5; }
   .headline-script { font-style: italic; color: var(--teal-dark); white-space: pre-line; }
   .forwho-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  @media (max-width: 980px) {
+    .forwho-section { gap: 28px; padding: 64px 36px; }
+    .forwho-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 760px) {
+    .forwho-section { gap: 24px; padding: 56px 24px; }
+    .forwho-headline { max-width: none; }
+    .forwho-headline { text-align: center; }
+    .forwho-headline h2 { font-size: 28px; }
+    .headline-script { text-align: center; white-space: normal; text-wrap: balance; }
+  }
+
+  @media (max-width: 480px) {
+    .forwho-section { padding: 48px 16px; }
+    .forwho-headline h2 { font-size: 25px; }
+    .forwho-cards { grid-template-columns: 1fr; gap: 14px; }
+  }
 </style>

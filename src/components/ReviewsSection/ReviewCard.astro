@@ -23,11 +23,11 @@ const { review } = Astro.props;
   .review-card {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
     background: #fff;
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 18px;
+    padding: 14px 16px;
     box-shadow: 0 3px 16px rgba(0,0,0,.05);
   }
 
@@ -35,22 +35,40 @@ const { review } = Astro.props;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     min-width: 0;
   }
 
   .review-photo {
-    width: 56px;
-    height: 56px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid var(--ivory2);
   }
 
-  .review-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; min-width: 0; }
-  .review-head h3 { font-size: 16px; font-weight: 700; color: var(--text-dark); }
-  .review-role { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-soft); }
+  .review-head { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; min-width: 0; }
+  .review-head h3 { font-size: 15px; font-weight: 700; color: var(--text-dark); }
+  .review-role { font-size: 8.5px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; color: var(--text-soft); }
   .review-role.couple { color: var(--teal-dark); }
   .review-role.organizer { color: var(--gold); }
-  .review-card p { width: 100%; font-size: 13px; line-height: 1.65; color: var(--text-mid); text-wrap: balance }
+  .review-card p { width: 100%; font-size: 12.5px; line-height: 1.45; color: var(--text-mid); text-wrap: balance }
+  :global(html.dark) .review-card {
+    background: rgba(26,37,64,.92);
+    border-color: rgba(184,148,63,.22);
+    box-shadow: 0 8px 28px rgba(0,0,0,.18);
+  }
+  :global(html.dark) .review-photo { border-color: rgba(184,148,63,.25); }
+  :global(html.dark) .review-head h3 { color: var(--text-dark); }
+  :global(html.dark) .review-card p { color: var(--text-mid); }
+
+  @media (max-width: 480px) {
+    .review-card { padding: 16px; gap: 12px; }
+    .review-profile { gap: 12px; }
+    .review-photo { width: 48px; height: 48px; }
+    .review-head { gap: 3px; }
+    .review-head h3 { font-size: 15px; }
+    .review-role { font-size: 8.5px; letter-spacing: 1px; }
+    .review-card p { font-size: 12.5px; text-wrap: auto; }
+  }
 </style>

@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { panel } = Astro.props;
-const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-green"];
+const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
 ---
 
 <div class="panel-card">
@@ -50,7 +50,7 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-green"];
   .panel-dot { width: 8px; height: 8px; border-radius: 50%; }
   .panel-dot-red { background: #ff5f57; }
   .panel-dot-yellow { background: #ffbd2e; }
-  .panel-dot-green { background: #28ca41; }
+  .panel-dot-gold { background: #c9a84c; }
   .panel-title { font-size: 11px; font-weight: 600; color: var(--text-mid); margin-left: 4px; }
   .panel-body { padding: 14px; }
 
@@ -63,4 +63,17 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-green"];
   .seat-table-oval { width: 36px; height: 22px; border-radius: 50%; border: 1.5px solid var(--teal-dark); display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; color: var(--teal-dark); }
   .seat-table-oval.gold-border { border-color: var(--gold); }
   .seat-summary { display: flex; justify-content: space-between; font-size: 9px; color: var(--text-soft); }
+  :global(html.dark) .panel-card { background: rgba(26,37,64,.92); border-color: rgba(184,148,63,.22); box-shadow: 0 8px 28px rgba(0,0,0,.18); }
+  :global(html.dark) .panel-header { background: rgba(17,24,39,.62); border-bottom-color: rgba(184,148,63,.18); }
+  :global(html.dark) .seat-table { background: rgba(17,24,39,.45); border-color: rgba(184,148,63,.18); }
+  :global(html.dark) .seat-table-oval { border-color: var(--gold); color: var(--gold); }
+
+  @media (max-width: 480px) {
+    .panel-header { padding: 9px 12px; }
+    .panel-body { padding: 12px; }
+    .seat-grid { gap: 6px; }
+    .seat-table { padding: 7px 5px; }
+    .seat-dot { width: 11px; height: 11px; }
+    .seat-table-oval { width: 32px; height: 20px; }
+  }
 </style>

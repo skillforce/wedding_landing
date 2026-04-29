@@ -16,7 +16,7 @@ export const reviews: Record<ReviewLocale, Review[]> = {
     {
       name: "Emma & Daniel Reed",
       role: "couple",
-      photo: avatar("#d8efe8", "#4fb8a0", "ER"),
+      photo: avatar("#efe3d4", "#b9875f", "ER"),
       review:
         "Doctor Wedding gave us one calm place for guests, seating, budget, and the timeline. We stopped losing details in chats and actually enjoyed the last month before the wedding.",
     },
@@ -53,7 +53,7 @@ export const reviews: Record<ReviewLocale, Review[]> = {
     {
       name: "Анна и Максим Волковы",
       role: "couple",
-      photo: avatar("#d8efe8", "#4fb8a0", "АВ"),
+      photo: avatar("#efe3d4", "#b9875f", "АВ"),
       review:
         "Doctor Wedding собрал гостей, рассадку, бюджет и тайминг в одном спокойном месте. Мы перестали искать детали в чатах и наконец спокойно готовились к свадьбе.",
     },

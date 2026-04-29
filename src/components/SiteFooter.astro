@@ -12,10 +12,6 @@ const footerLinks = [
   { label: fn.features, href: "#features" },
   { label: fn.forWho, href: "#forwho" },
   { label: fn.pricing, href: "#pricing" },
-  { label: fn.templates, href: "#" },
-  { label: fn.about, href: "#" },
-  { label: fn.blog, href: "#" },
-  { label: fn.help, href: "#" },
 ];
 
 const socialLinks = [
@@ -75,4 +71,18 @@ const socialLinks = [
 
   .footer-bottom { border-top: 1px solid var(--border); padding-top: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
   .footer-bottom p { font-size: 11px; color: var(--text-soft); }
+
+  @media (max-width: 760px) {
+    footer { padding: 36px 24px 22px; }
+    .footer-inner { align-items: flex-start; gap: 22px; }
+    .footer-links { gap: 14px 20px; }
+  }
+
+  @media (max-width: 480px) {
+    footer { padding: 32px 16px 20px; }
+    .footer-inner { flex-direction: column; margin-bottom: 22px; }
+    .footer-links {  align-self: center }
+    .footer-social { gap: 8px; align-self: center }
+    .footer-bottom { align-items: flex-start; flex-direction: column; }
+  }
 </style>

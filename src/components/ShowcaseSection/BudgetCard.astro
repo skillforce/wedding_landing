@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { panel } = Astro.props;
-const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-green"];
+const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
 ---
 
 <div class="panel-card">
@@ -39,7 +39,7 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-green"];
   .panel-dot { width: 8px; height: 8px; border-radius: 50%; }
   .panel-dot-red { background: #ff5f57; }
   .panel-dot-yellow { background: #ffbd2e; }
-  .panel-dot-green { background: #28ca41; }
+  .panel-dot-gold { background: #c9a84c; }
   .panel-title { font-size: 11px; font-weight: 600; color: var(--text-mid); margin-left: 4px; }
   .panel-body { padding: 14px; }
 
@@ -56,4 +56,17 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-green"];
   .budget-seg-3 { width: 12%; background: #b8943f; }
   .budget-seg-4 { width: 15%; background: #9ba8c0; }
   .budget-seg-5 { width: 13%; background: var(--border); }
+  :global(html.dark) .panel-card { background: rgba(26,37,64,.92); border-color: rgba(184,148,63,.22); box-shadow: 0 8px 28px rgba(0,0,0,.18); }
+  :global(html.dark) .panel-header { background: rgba(17,24,39,.62); border-bottom-color: rgba(184,148,63,.18); }
+  :global(html.dark) .budget-row { border-bottom-color: rgba(255,255,255,.08); }
+  :global(html.dark) .budget-total,
+  :global(html.dark) .budget-amt { color: var(--text-dark); }
+
+  @media (max-width: 480px) {
+    .panel-header { padding: 9px 12px; }
+    .panel-body { padding: 12px; }
+    .budget-total { font-size: 20px; }
+    .budget-row { gap: 8px; }
+    .budget-row > span:last-child { text-align: right; }
+  }
 </style>

@@ -43,4 +43,24 @@ const { card } = Astro.props;
   .forwho-body { padding: 20px 20px 22px; }
   .forwho-body h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
   .forwho-body p { font-size: 12px; color: var(--text-mid); line-height: 1.65; }
+  :global(html.dark) .forwho-card {
+    background: rgba(26,37,64,.92);
+    border-color: rgba(184,148,63,.22);
+    box-shadow: 0 8px 28px rgba(0,0,0,.18);
+  }
+  :global(html.dark) .forwho-img {
+    background: rgba(17,24,39,.65);
+  }
+  :global(html.dark) .forwho-img-placeholder {
+    color: rgba(226,185,106,.7);
+    background: repeating-linear-gradient(45deg, rgba(17,24,39,.72), rgba(17,24,39,.72) 4px, rgba(42,52,80,.72) 4px, rgba(42,52,80,.72) 8px);
+  }
+  :global(html.dark) .forwho-body h3 { color: var(--text-dark); }
+  :global(html.dark) .forwho-body p { color: var(--text-mid); }
+
+  @media (max-width: 480px) {
+    .forwho-img { height: 132px; }
+    .forwho-img-placeholder { font-size: 9px; letter-spacing: 1px; }
+    .forwho-body { padding: 17px 16px 18px; }
+  }
 </style>

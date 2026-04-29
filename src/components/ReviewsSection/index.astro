@@ -23,14 +23,20 @@ const copy =
 ---
 
 <section class="reviews-section fade-in" id="reviews">
-  <div class="reviews-creep-line"></div>
   <div class="reviews-headline">
     <p class="reviews-eyebrow">{copy.eyebrow}</p>
     <h2 class="serif">{copy.headline}</h2>
     <p class="headline-script serif">{copy.scriptLine}</p>
   </div>
-  <div class="reviews-grid">
-    {sectionReviews.map(review => <ReviewCard review={review} />)}
+  <div class="reviews-row-mask">
+    <div class="reviews-grid">
+      <div class="reviews-group">
+        {sectionReviews.map(review => <ReviewCard review={review} />)}
+      </div>
+      <div class="reviews-group" aria-hidden="true">
+        {sectionReviews.map(review => <ReviewCard review={review} />)}
+      </div>
+    </div>
   </div>
 </section>
 
@@ -48,29 +54,83 @@ const copy =
     align-items: start;
   }
 
-  .reviews-creep-line {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 1.5px;
-    background: linear-gradient(90deg, transparent, var(--teal-dark), var(--gold), transparent);
-    animation: reviews-creep 4.5s linear infinite;
-    opacity: 0.45;
-  }
-
-  :global(html.dark) .reviews-creep-line {
-    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-bright), transparent);
-  }
-
   .reviews-headline { position: sticky; top: 80px; align-self: start; }
   .reviews-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-soft); margin-bottom: 12px; }
   .reviews-headline h2 { font-size: 30px; font-weight: 700; line-height: 1.25; margin-bottom: 12px; }
   .headline-script { font-style: italic; color: var(--teal-dark); font-size: 16px; line-height: 1.45; white-space: pre-line; }
-  .reviews-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+  .reviews-row-mask {
+    min-width: 0;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  }
+  .reviews-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+    width: max-content;
+    animation: reviews-grid-creep 18s linear infinite;
+  }
+  .reviews-grid:hover { animation-play-state: paused; }
+  .reviews-group {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+  }
+  .reviews-grid :global(.review-card) {
+    flex: 0 0 360px;
+    width: 360px;
+  }
+
+  @media (max-width: 760px) {
+    .reviews-section { grid-template-columns: 1fr; gap: 24px; padding: 56px 24px; }
+    .reviews-headline { position: static; text-align: center; }
+    .reviews-headline h2 { font-size: 27px; }
+    .headline-script { text-align: center; white-space: normal; text-wrap: balance; }
+    .reviews-row-mask { overflow: visible; mask-image: none; }
+    .reviews-grid {
+      animation: none;
+      width: auto;
+      display: block;
+    }
+    .reviews-group {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .reviews-group[aria-hidden="true"] { display: none; }
+    .reviews-grid :global(.review-card) {
+      width: auto;
+      min-width: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .reviews-section { padding: 48px 16px; }
+    .reviews-eyebrow { letter-spacing: 2px; }
+    .reviews-headline h2 { font-size: 24px; }
+    .headline-script { font-size: 15px; }
+    .reviews-group { grid-template-columns: 1fr; gap: 12px; }
+  }
 
   @keyframes reviews-creep {
     from { transform: translateX(-50%); }
     to { transform: translateX(0); }
+  }
+
+  @keyframes reviews-grid-creep {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - 8px)); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reviews-grid {
+      animation: none;
+      width: auto;
+      flex-wrap: wrap;
+    }
+
+    .reviews-group[aria-hidden="true"] {
+      display: none;
+    }
   }
 </style>

@@ -23,7 +23,7 @@ const navLinks = [
     </div>
   </a>
 
-  <nav>
+  <nav class="desktop-nav" aria-label="Primary navigation">
     {navLinks.map(({ label, href }) => (
       <a class="nav-item" href={href}>{label}</a>
     ))}
@@ -38,7 +38,47 @@ const navLinks = [
       <Toggle class="theme-toggle-icon" />
     </div>
   </div>
+
+  <button class="mobile-menu-btn" type="button" aria-label="Open navigation" aria-controls="mobile-nav-dialog">
+    <svg class="mobile-menu-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+  </button>
 </header>
+
+<dialog id="mobile-nav-dialog" class="mobile-nav-dialog" aria-label="Mobile navigation">
+  <nav class="mobile-nav-panel" aria-label="Primary navigation">
+    {navLinks.map(({ label, href }) => (
+      <a class="nav-item" href={href}>{label}</a>
+    ))}
+  </nav>
+</dialog>
+
+<script>
+  const mobileMenuButton = document.querySelector('.mobile-menu-btn');
+  const mobileNavDialog = document.querySelector('.mobile-nav-dialog');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-panel .nav-item');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    if (mobileNavDialog instanceof HTMLDialogElement) {
+      mobileNavDialog.showModal();
+    }
+  });
+
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (mobileNavDialog instanceof HTMLDialogElement) {
+        mobileNavDialog.close();
+      }
+    });
+  });
+
+  mobileNavDialog?.addEventListener('click', event => {
+    if (event.target === mobileNavDialog && mobileNavDialog instanceof HTMLDialogElement) {
+      mobileNavDialog.close();
+    }
+  });
+</script>
 
 <style>
   header {
@@ -47,13 +87,9 @@ const navLinks = [
     gap: 40px;
     padding: 14px 32px;
     background: transparent;
-    justify-content:space-between ;
+    justify-content: space-between;
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     transition: color 0.2s;
-
-    @media (max-width: 768px) {
-      gap: 10px;
-    }
   }
 
   .header-controls {
@@ -63,14 +99,19 @@ const navLinks = [
     gap: 10px; margin-left: auto;
   }
   .logo,
-  nav {
+  .desktop-nav,
+  .mobile-menu-btn,
+  .mobile-nav-panel {
     background: rgba(255,255,255,.42);
     border: 1px solid rgba(255,255,255,.5);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     transition: background 0.2s, border-color 0.2s;
   }
   :global(html.dark) .logo,
-  :global(html.dark) nav {
+  :global(html.dark) .desktop-nav,
+  :global(html.dark) .mobile-menu-btn,
+  :global(html.dark) .mobile-nav-panel {
     background: rgba(17,24,39,.38);
     border-color: rgba(255,255,255,.16);
   }
@@ -87,7 +128,7 @@ const navLinks = [
   :global(html.dark) .logo-dw { color: #fff; text-shadow: 0 1px 14px rgba(0,0,0,.45); }
   :global(html.dark) .logo-sub { color: var(--gold); }
 
-  nav {
+  .desktop-nav {
     display: flex; gap: 0; align-items: center;
     padding: 4px;
     border-radius: 22px;
@@ -97,16 +138,125 @@ const navLinks = [
   :global(html.dark) .nav-item { color: #fff; text-shadow: 0 1px 14px rgba(0,0,0,.45); }
   :global(html.dark) .nav-item:hover { color: var(--gold); }
 
-  .lang-toggle { display: flex; align-items: center; gap: 2px; background: rgba(255,255,255,.42); border: 1px solid rgba(255,255,255,.5); border-radius: 20px; padding: 3px; flex-shrink: 0; backdrop-filter: blur(12px); transition: background 0.2s, border-color 0.2s; }
+  .mobile-nav-dialog { display: none; }
+  .mobile-menu-btn { display: none; }
+
+  .lang-toggle { display: flex; align-items: center; gap: 2px; background: rgba(255,255,255,.42); border: 1px solid rgba(255,255,255,.5); border-radius: 20px; padding: 3px; flex-shrink: 0; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: background 0.2s, border-color 0.2s; }
   :global(html.dark) .lang-toggle { background: rgba(17,24,39,.38); border-color: rgba(255,255,255,.16); }
   .lang-btn { padding: 4px 10px; border-radius: 16px; border: none; background: transparent; color: var(--text-soft); font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-block; }
   :global(html.dark) .lang-btn { color: #aaa; }
   .lang-btn.active { background: var(--navy); color: #fff; }
   :global(html.dark) .lang-btn.active { background: #fff; color: var(--navy); }
 
-  .theme-toggle { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: rgba(255,255,255,.42); border: 1px solid rgba(255,255,255,.5); border-radius: 20px; cursor: pointer; transition: 0.2s; color: var(--text-dark); backdrop-filter: blur(12px); }
+  .theme-toggle { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: rgba(255,255,255,.42); border: 1px solid rgba(255,255,255,.5); border-radius: 20px; cursor: pointer; transition: 0.2s; color: var(--text-dark); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
   .theme-toggle:hover { background: rgba(255,255,255,.62); }
   :global(html.dark) .theme-toggle { background: rgba(17,24,39,.38); border-color: rgba(255,255,255,.16); color: #fff; }
   :global(html.dark) .theme-toggle:hover { background: rgba(17,24,39,.58); }
   :global(.theme-toggle-icon) { width: 18px; height: 18px; }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .logo,
+    .desktop-nav,
+    .mobile-menu-btn,
+    .mobile-nav-panel,
+    .lang-toggle,
+    .theme-toggle {
+      background: rgba(255,255,255,.9);
+      border-color: rgba(42,78,74,.16);
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    }
+
+    :global(html.dark) .logo,
+    :global(html.dark) .desktop-nav,
+    :global(html.dark) .mobile-menu-btn,
+    :global(html.dark) .mobile-nav-panel,
+    :global(html.dark) .lang-toggle,
+    :global(html.dark) .theme-toggle {
+      background: rgba(17,24,39,.92);
+      border-color: rgba(255,255,255,.14);
+      box-shadow: 0 8px 22px rgba(0,0,0,.24);
+    }
+  }
+
+  @media (max-width: 900px) {
+    header { gap: 12px; padding: 12px 18px; }
+    .nav-item { padding-inline: 10px; font-size: 12.5px; }
+  }
+
+  @media (max-width: 640px) {
+    header { gap: 8px; padding: 10px 12px; }
+    .logo { order: 1; gap: 6px; padding: 4px 9px 4px 6px; border-radius: 22px; min-width: 0; }
+    .logo-dw { font-size: 18px; line-height: 1; letter-spacing: 0; }
+    .logo-sub { font-size: 13px; line-height: 1; margin-top: -1px; }
+    .header-controls { order: 2; gap: 8px; margin-left: auto; }
+    .lang-toggle { padding: 4px; border-radius: 24px; }
+    .lang-btn { padding: 5px 10px; font-size: 12px; line-height: 1.25; border-radius: 18px; }
+    .theme-toggle { width: 38px; height: 38px; border-radius: 22px; }
+    :global(.theme-toggle-icon) { width: 19px; height: 19px; }
+    .desktop-nav { display: none; }
+    .mobile-menu-btn {
+      order: 3;
+      display: flex;
+      width: 38px;
+      height: 38px;
+      border-radius: 22px;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,.5);
+      color: var(--text-dark);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .mobile-menu-icon {
+      width: 21px;
+      height: 21px;
+      display: block;
+    }
+    :global(html.dark) .mobile-menu-btn {
+      color: #fff;
+    }
+    .mobile-nav-dialog {
+      position: fixed;
+      top: 60px;
+      left: 12px;
+      right: 12px;
+      width: auto;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+    }
+    .mobile-nav-dialog[open] {
+      display: block;
+    }
+    .mobile-nav-dialog::backdrop {
+      background: transparent;
+    }
+    .mobile-nav-panel {
+      display: grid;
+      gap: 4px;
+      padding: 8px;
+      border-radius: 18px;
+    }
+    .nav-item {
+      width: 100%;
+      padding: 11px 12px;
+      font-size: 13px;
+      line-height: 1.25;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 360px) {
+    header { padding-inline: 8px; }
+    .logo-sub { font-size: 12px; }
+    .logo-dw { font-size: 17px; }
+    .header-controls { gap: 6px; }
+    .lang-btn { padding-inline: 8px; }
+    .theme-toggle,
+    .mobile-menu-btn { width: 36px; height: 36px; }
+  }
 </style>
