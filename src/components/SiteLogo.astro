@@ -1,0 +1,50 @@
+---
+interface Props {
+  variant?: "header" | "footer";
+}
+
+const { variant = "header" } = Astro.props;
+---
+<a href="/" class:list={["site-logo", `site-logo--${variant}`]}>
+  <img src="/images/logo_light.avif" alt="Doctor Wedding" class="logo-img logo-img--light" width="1563" height="980" />
+  <img src="/images/logo_dark.avif"  alt="Doctor Wedding" class="logo-img logo-img--dark"  width="1529" height="1011" />
+</a>
+
+<style>
+  .site-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+
+  .logo-img { display: block; width: auto; }
+  .logo-img--dark { display: none; }
+  :global(html.dark) .logo-img--light { display: none; }
+  :global(html.dark) .logo-img--dark  { display: block; }
+
+  /* header variant */
+  .site-logo--header {
+    padding: 5px 12px 5px 8px;
+    border-radius: 24px;
+    background: rgba(255,255,255,.42);
+    border: 1px solid rgba(255,255,255,.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  :global(html.dark) .site-logo--header { background: rgba(17,24,39,.38); border-color: rgba(255,255,255,.16); }
+  .site-logo--header .logo-img { height: 64px; }
+
+  /* footer variant */
+  .site-logo--footer .logo-img { height: 56px; }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .site-logo--header { background: rgba(255,255,255,.9); border-color: rgba(42,78,74,.16); box-shadow: 0 6px 18px rgba(0,0,0,.08); }
+    :global(html.dark) .site-logo--header { background: rgba(17,24,39,.92); border-color: rgba(255,255,255,.14); box-shadow: 0 8px 22px rgba(0,0,0,.24); }
+  }
+
+  @media (max-width: 640px) {
+    .site-logo--header { order: 1; padding: 4px 9px 4px 6px; border-radius: 22px; min-width: 0; }
+    .site-logo--header .logo-img { height: 50px; }
+  }
+
+  @media (max-width: 360px) {
+    .site-logo--header .logo-img { height: 26px; }
+  }
+</style>

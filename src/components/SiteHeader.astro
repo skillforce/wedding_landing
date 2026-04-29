@@ -1,7 +1,7 @@
 ---
 import { Toggle } from "astro-theme-toggle/components";
 import type { Translations } from "../i18n/translations";
-import LogoRings from "./icons/LogoRings.astro";
+import SiteLogo from "./SiteLogo.astro";
 
 interface Props {
   t: Translations;
@@ -15,13 +15,7 @@ const navLinks = [
 ];
 ---
 <header>
-  <a href="/" class="logo">
-    <LogoRings />
-    <div class="logo-text">
-      <span class="logo-dw serif">D<span class="logo-amp">&amp;</span>W</span>
-      <span class="logo-sub script">Doctor Wedding</span>
-    </div>
-  </a>
+  <SiteLogo />
 
   <nav class="desktop-nav" aria-label="Primary navigation">
     {navLinks.map(({ label, href }) => (
@@ -98,7 +92,6 @@ const navLinks = [
     align-self: center;
     gap: 10px; margin-left: auto;
   }
-  .logo,
   .desktop-nav,
   .mobile-menu-btn,
   .mobile-nav-panel {
@@ -108,25 +101,12 @@ const navLinks = [
     -webkit-backdrop-filter: blur(12px);
     transition: background 0.2s, border-color 0.2s;
   }
-  :global(html.dark) .logo,
   :global(html.dark) .desktop-nav,
   :global(html.dark) .mobile-menu-btn,
   :global(html.dark) .mobile-nav-panel {
     background: rgba(17,24,39,.38);
     border-color: rgba(255,255,255,.16);
   }
-  .logo {
-    display: flex; align-items: center; gap: 8px;
-    padding: 5px 12px 5px 8px;
-    border-radius: 24px;
-    text-decoration: none; flex-shrink: 0;
-  }
-  .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-  .logo-dw { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--text-dark); text-shadow: 0 1px 12px rgba(255,255,255,.7); transition: color 0.2s; }
-  .logo-amp { font-size: .8em; vertical-align: super; font-weight: 400; }
-  .logo-sub { font-size: 16px; opacity: 0.85; margin-top: -2px; color: var(--teal-dark); text-shadow: 0 1px 12px rgba(255,255,255,.7); transition: color 0.2s; }
-  :global(html.dark) .logo-dw { color: #fff; text-shadow: 0 1px 14px rgba(0,0,0,.45); }
-  :global(html.dark) .logo-sub { color: var(--gold); }
 
   .desktop-nav {
     display: flex; gap: 0; align-items: center;
@@ -155,7 +135,6 @@ const navLinks = [
   :global(.theme-toggle-icon) { width: 18px; height: 18px; }
 
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .logo,
     .desktop-nav,
     .mobile-menu-btn,
     .mobile-nav-panel,
@@ -166,7 +145,6 @@ const navLinks = [
       box-shadow: 0 6px 18px rgba(0,0,0,.08);
     }
 
-    :global(html.dark) .logo,
     :global(html.dark) .desktop-nav,
     :global(html.dark) .mobile-menu-btn,
     :global(html.dark) .mobile-nav-panel,
@@ -185,9 +163,6 @@ const navLinks = [
 
   @media (max-width: 640px) {
     header { gap: 8px; padding: 10px 12px; }
-    .logo { order: 1; gap: 6px; padding: 4px 9px 4px 6px; border-radius: 22px; min-width: 0; }
-    .logo-dw { font-size: 18px; line-height: 1; letter-spacing: 0; }
-    .logo-sub { font-size: 13px; line-height: 1; margin-top: -1px; }
     .header-controls { order: 2; gap: 8px; margin-left: auto; }
     .lang-toggle { padding: 4px; border-radius: 24px; }
     .lang-btn { padding: 5px 10px; font-size: 12px; line-height: 1.25; border-radius: 18px; }
@@ -252,8 +227,6 @@ const navLinks = [
 
   @media (max-width: 360px) {
     header { padding-inline: 8px; }
-    .logo-sub { font-size: 12px; }
-    .logo-dw { font-size: 17px; }
     .header-controls { gap: 6px; }
     .lang-btn { padding-inline: 8px; }
     .theme-toggle,

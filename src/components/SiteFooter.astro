@@ -1,6 +1,6 @@
 ---
 import type { Translations } from "../i18n/translations";
-import LogoRings from "./icons/LogoRings.astro";
+import SiteLogo from "./SiteLogo.astro";
 
 interface Props {
   t: Translations;
@@ -23,13 +23,7 @@ const socialLinks = [
 ---
 <footer>
   <div class="footer-inner">
-    <a href="/" class="footer-logo-wrap">
-      <LogoRings size={32} showStar={false} />
-      <div>
-        <div class="footer-logo-dw serif">D&amp;W</div>
-        <div class="footer-logo-sub script">Doctor Wedding</div>
-      </div>
-    </a>
+    <SiteLogo variant="footer" />
 
     <nav class="footer-links">
       {footerLinks.map(({ label, href }) => (
@@ -55,10 +49,6 @@ const socialLinks = [
   :global(html.dark) footer { background: var(--navy2); border-top-color: var(--border); }
 
   .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 28px; }
-  .footer-logo-wrap { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-  .footer-logo-dw { font-size: 18px; font-weight: 700; color: var(--text-dark); }
-  .footer-logo-sub { font-size: 13px; color: var(--teal-dark); }
-  :global(html.dark) .footer-logo-sub { color: var(--gold); }
 
   .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
   .footer-links a { font-size: 12.5px; color: var(--text-soft); text-decoration: none; transition: 0.15s; }
