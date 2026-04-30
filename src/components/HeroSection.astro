@@ -32,12 +32,6 @@ const { t } = Astro.props;
       <IconBoxPlus size={14} />{t.hero.ctaSecondary}
     </Button>
   </div>
-
-  <div class="hero-editorial">
-    <div class="hero-editorial-label">WEDDING TIMES</div>
-    <div class="hero-editorial-text serif">A day to remember</div>
-  </div>
-
   <div class="creep-line"></div>
 </section>
 
@@ -77,13 +71,6 @@ const { t } = Astro.props;
 
   .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 
-  .hero-editorial { position: absolute; right: 40px; bottom: 60px; background: rgba(255,255,255,.9); border: 1px solid var(--border); padding: 8px 14px; transform: rotate(-2deg); box-shadow: 2px 3px 12px rgba(0,0,0,.08); transition: background 0.2s, border-color 0.2s; }
-  :global(html.dark) .hero-editorial { background: rgba(30,45,74,.9); border-color: rgba(184,148,63,.3); transform: rotate(2deg); }
-  .hero-editorial-label { font-size: 8px; letter-spacing: 2px; color: #999; margin-bottom: 2px; }
-  :global(html.dark) .hero-editorial-label { letter-spacing: 2.5px; color: var(--gold); opacity: 0.75; }
-  .hero-editorial-text { font-style: italic; font-size: 11px; color: var(--text-dark); line-height: 1.4; }
-  :global(html.dark) .hero-editorial-text { color: rgba(255,255,255,.85); }
-
   .creep-line { position: absolute; bottom: 0; left: 0; width: 200%; height: 1.5px; background: linear-gradient(90deg, transparent, var(--teal-dark), transparent); animation: creep 4s linear infinite; opacity: 0.4; transition: background 0.2s; }
   :global(html.dark) .creep-line { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
 
@@ -100,7 +87,6 @@ const { t } = Astro.props;
     .hero-title-line1 { font-size: 42px; }
     .hero-title-line2 { font-size: 56px; margin-bottom: 16px; }
     .hero-sub { font-size: 14px; max-width: 340px; margin-bottom: 24px; }
-    .hero-editorial { right: 22px; bottom: 24px; padding: 7px 12px; }
   }
 
   @media (max-width: 480px) {
@@ -114,7 +100,6 @@ const { t } = Astro.props;
     .hero-sub { font-size: 13px; line-height: 1.55; }
     .hero-btns { width: 100%; gap: 10px; }
     .hero-btns :global(.button) { width: 100%; }
-    .hero-editorial { display: none; }
   }
 
   @media (max-width: 340px) {

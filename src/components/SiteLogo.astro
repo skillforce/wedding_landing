@@ -5,13 +5,13 @@ interface Props {
 
 const { variant = "header" } = Astro.props;
 ---
-<a href="/" class:list={["site-logo", `site-logo--${variant}`]}>
+<div class:list={["site-logo", `site-logo--${variant}`]}>
   <img src="/images/logo_light.avif" alt="Doctor Wedding" class="logo-img logo-img--light" width="1563" height="980" />
   <img src="/images/logo_dark.avif"  alt="Doctor Wedding" class="logo-img logo-img--dark"  width="1529" height="1011" />
-</a>
+</div>
 
 <style>
-  .site-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+  .site-logo { display: flex; align-items: center; width: fit-content; justify-self: start; flex-shrink: 0; }
 
   .logo-img { display: block; width: auto; }
   .logo-img--dark { display: none; }

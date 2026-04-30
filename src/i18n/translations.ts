@@ -159,7 +159,7 @@ export const en: Translations = {
 
   features: {
     headline: "Everything you need, beautifully organized",
-    scriptLine: "Всё, что нужно\n— в одном\nкрасивом\nместе",
+    scriptLine: "Всё, что нужно —\nв одном красивом месте",
     cards: [
       {
         icon: "👥",
