@@ -18,6 +18,8 @@ RUN pnpm build
 # ── Stage 2: serve ────────────────────────────────────────────────────────────
 FROM nginx:alpine-slim AS runner
 
+
+
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /app/dist /usr/share/nginx/html
 
