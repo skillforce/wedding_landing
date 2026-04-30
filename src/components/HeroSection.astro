@@ -20,6 +20,10 @@ const { t } = Astro.props;
   </div>
 
   <p class="hero-eyebrow">{t.hero.eyebrow}</p>
+  <div class="hero-logo">
+    <img class="hero-logo-light" src="/images/logo/logo_light.avif" alt="Doctor Wedding" />
+    <img class="hero-logo-dark"  src="/images/logo/logo_dark.avif"  alt="Doctor Wedding" />
+  </div>
   <span class="hero-title-line1 serif">We plan.</span>
   <span class="hero-title-line2 script">You celebrate.</span>
   <p class="hero-sub">{t.hero.subtitle}</p>
@@ -39,7 +43,7 @@ const { t } = Astro.props;
   .hero {
     min-height: 650px; position: relative; overflow: hidden;
     padding: 10px;
-    background-image: url("/images/hero_backround_light.avif");
+    background-image: url("/images/hero/hero_backround_light.avif");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -50,7 +54,7 @@ const { t } = Astro.props;
     text-align: center;
   }
   :global(html.dark) .hero {
-    background-image: url("/images/hero_backround_dark.avif");
+    background-image: url("/images/hero/hero_backround_dark.avif");
   }
 
   .hero-stars { position: absolute; inset: 0; pointer-events: none; overflow: hidden; display: none; }
@@ -60,13 +64,19 @@ const { t } = Astro.props;
   .hero-star-2 { width: 1.5px; height: 1.5px; background: rgba(184,148,63,.4); top: 32%; left: 85%; }
   .hero-star-3 { width: 2px; height: 2px; background: rgba(255,255,255,.25); top: 55%; left: 78%; }
 
-  .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; color: var(--text-soft); transition: color 0.2s; }
+  .hero-eyebrow { font-size: 16px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; color: var(--text-soft); transition: color 0.2s; }
+
+  .hero-logo { margin-bottom: 20px; display: flex; justify-content: center; }
+  .hero-logo img { height: 110px; width: auto; }
+  .hero-logo-dark { display: none; }
+  :global(html.dark) .hero-logo-light { display: none; }
+  :global(html.dark) .hero-logo-dark  { display: block; }
   :global(html.dark) .hero-eyebrow { color: var(--gold); opacity: 0.8; }
-  .hero-title-line1 { font-size: 52px; font-weight: 700; line-height: 1.1; display: block; color: var(--text-dark); transition: color 0.2s; }
-  .hero-title-line2 { font-size: 68px; line-height: 1.1; display: block; margin-bottom: 20px; color: var(--teal-dark); transition: color 0.2s; }
+  .hero-title-line1 { font-size: 57px; font-weight: 700; line-height: 1.1; display: block; color: var(--text-dark); transition: color 0.2s; }
+  .hero-title-line2 { font-size: 73px; line-height: 1.1; display: block; margin-bottom: 20px; color: var(--teal-dark); transition: color 0.2s; }
   :global(html.dark) .hero-title-line1 { color: #fff; }
   :global(html.dark) .hero-title-line2 { color: var(--gold-bright); }
-  .hero-sub { font-size: 14.5px; line-height: 1.65; max-width: 380px; margin: 0 auto 28px; color: var(--text-mid); transition: color 0.2s; }
+  .hero-sub { font-size: 17px; line-height: 1.65; max-width: 380px; margin: 0 auto 28px; color: var(--text-mid); transition: color 0.2s; }
   :global(html.dark) .hero-sub { color: #9ba8c0; }
 
   .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
@@ -78,15 +88,16 @@ const { t } = Astro.props;
     .hero {
       min-height: 560px;
       padding: 96px 24px 44px;
-      background-image: url("/images/hero_backround_light_mobile.avif");
+      background-image: url("/images/hero/hero_backround_light_mobile.avif");
       background-position: center top;
     }
     :global(html.dark) .hero {
-      background-image: url("/images/hero_backround_dark_mobile.avif");
+      background-image: url("/images/hero/hero_backround_dark_mobile.avif");
     }
-    .hero-title-line1 { font-size: 42px; }
-    .hero-title-line2 { font-size: 56px; margin-bottom: 16px; }
-    .hero-sub { font-size: 14px; max-width: 340px; margin-bottom: 24px; }
+    .hero-logo img { height: 88px; }
+    .hero-title-line1 { font-size: 47px; }
+    .hero-title-line2 { font-size: 61px; margin-bottom: 16px; }
+    .hero-sub { font-size: 16px; max-width: 340px; margin-bottom: 24px; }
   }
 
   @media (max-width: 480px) {
@@ -94,17 +105,17 @@ const { t } = Astro.props;
       min-height: 650px;
       padding: 92px 16px 40px;
     }
-    .hero-eyebrow { font-size: 10px; letter-spacing: 2px; margin-bottom: 12px; }
-    .hero-title-line1 { font-size: 35px; }
-    .hero-title-line2 { font-size: 46px; }
-    .hero-sub { font-size: 13px; line-height: 1.55; }
+    .hero-eyebrow { font-size: 15px; letter-spacing: 2px; margin-bottom: 12px; }
+    .hero-title-line1 { font-size: 40px; }
+    .hero-title-line2 { font-size: 51px; }
+    .hero-sub { font-size: 15px; line-height: 1.55; }
     .hero-btns { width: 100%; gap: 10px; }
     .hero-btns :global(.button) { width: 100%; }
   }
 
   @media (max-width: 340px) {
-    .hero-title-line1 { font-size: 32px; }
-    .hero-title-line2 { font-size: 42px; }
+    .hero-title-line1 { font-size: 37px; }
+    .hero-title-line2 { font-size: 47px; }
   }
   @keyframes creep { from { transform: translateX(-50%); } to { transform: translateX(0%); } }
 </style>

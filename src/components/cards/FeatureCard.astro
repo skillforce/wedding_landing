@@ -11,25 +11,28 @@ const { card } = Astro.props;
 ---
 
 <div class="feature-card">
-  <div class="feature-icon">{card.icon}</div>
-  <h3 class="serif">{card.title}</h3>
+  <div class="feature-image">
+    <img src={card.image} alt="" loading="lazy" width="96" height="96" />
+  </div>
+  <h3 >{card.title}</h3>
   <p>{card.desc}</p>
 </div>
 
 <style>
-  .feature-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px 16px; box-shadow: 0 2px 12px rgba(0,0,0,.04); transition: 0.2s; }
+  .feature-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 22px 16px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,.04); transition: 0.2s; }
   .feature-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,.07); }
-  .feature-icon { width: 42px; height: 42px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--ivory2); border-radius: 8px; }
+  .feature-image { width: 100px; height: 100px; margin: 0 auto 4px; display: flex; align-items: center; justify-content: center; background:transparent; border-radius: 14px; overflow: hidden; }
+  .feature-image img { width: 100%; height: 100%; object-fit: contain; display: block; }
   .feature-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--text-dark); }
   .feature-card p { font-size: 11.5px; line-height: 1.6; color: var(--text-mid); }
   :global(html.dark) .feature-card { background: rgba(26,37,64,.92); border-color: rgba(184,148,63,.22); box-shadow: 0 8px 28px rgba(0,0,0,.18); }
   :global(html.dark) .feature-card:hover { box-shadow: 0 12px 34px rgba(0,0,0,.26); }
-  :global(html.dark) .feature-icon { background: rgba(201,168,76,.12); }
+  :global(html.dark) .feature-image { background: transparent }
+  :global(html.dark) .feature-image img { filter: sepia(1) saturate(1.8) hue-rotate(340deg) brightness(.85) contrast(1.18); opacity: .9; }
   :global(html.dark) .feature-card h3 { color: var(--text-dark); }
   :global(html.dark) .feature-card p { color: var(--text-mid); }
-
   @media (max-width: 480px) {
     .feature-card { padding: 16px 14px; }
-    .feature-icon { width: 38px; height: 38px; font-size: 20px; margin-bottom: 10px; }
+    .feature-image { margin-bottom: 4px; }
   }
 </style>

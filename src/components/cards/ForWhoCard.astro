@@ -12,10 +12,7 @@ const { card } = Astro.props;
 
 <div class="forwho-card">
   <div class="forwho-img">
-    <div class="forwho-img-placeholder">
-      <div class="img-icon">{card.icon}</div>
-      <span>{card.imgLabel}</span>
-    </div>
+    <img src={card.image} alt={card.imgLabel} loading="lazy" width="640" height="420" />
   </div>
   <div class="forwho-body">
     <h3 class="serif">{card.title}</h3>
@@ -32,14 +29,48 @@ const { card } = Astro.props;
     box-shadow: 0 2px 12px rgba(0,0,0,.05);
   }
   .forwho-img {
-    height: 160px;
+    position: relative;
+    height: 180px;
     background: var(--ivory);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding:5px;
+    overflow: hidden;
   }
-  .forwho-img-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-soft); background: repeating-linear-gradient(45deg, var(--ivory), var(--ivory) 4px, var(--ivory2) 4px, var(--ivory2) 8px); }
-  .img-icon { font-size: 32px; opacity: 0.4; }
+  .forwho-img::before {
+    content: "";
+    position: absolute;
+    inset: 18px 12%;
+    border-radius: 999px;
+    background:
+      radial-gradient(circle at 40% 45%, rgba(185,135,95,.36), transparent 58%),
+      radial-gradient(circle at 65% 55%, rgba(42,78,74,.2), transparent 62%);
+    opacity: .74;
+    transform: translateZ(0);
+    animation: image-glow 4.8s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .forwho-img::after {
+    content: "";
+    position: absolute;
+    top: -35%;
+    bottom: -35%;
+    left: -60%;
+    width: 42%;
+    background: linear-gradient(110deg, transparent 0%, rgba(185,135,95,.08) 18%, rgba(255,244,230,.84) 42%, rgba(42,78,74,.24) 58%, rgba(185,135,95,.08) 80%, transparent 100%);
+    transform: translate3d(-20%, 0, 0) rotate(8deg);
+    animation: image-shine 5.6s cubic-bezier(.4, 0, .2, 1) infinite;
+    pointer-events: none;
+  }
+  .forwho-img img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
   .forwho-body { padding: 20px 20px 22px; }
   .forwho-body h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
   .forwho-body p { font-size: 12px; color: var(--text-mid); line-height: 1.65; }
@@ -51,16 +82,33 @@ const { card } = Astro.props;
   :global(html.dark) .forwho-img {
     background: rgba(17,24,39,.65);
   }
-  :global(html.dark) .forwho-img-placeholder {
-    color: rgba(226,185,106,.7);
-    background: repeating-linear-gradient(45deg, rgba(17,24,39,.72), rgba(17,24,39,.72) 4px, rgba(42,52,80,.72) 4px, rgba(42,52,80,.72) 8px);
-  }
+  :global(html.dark) .forwho-img::before { background: radial-gradient(circle, rgba(226,185,106,.42), transparent 68%); opacity: .72; }
+  :global(html.dark) .forwho-img::after { background: linear-gradient(110deg, transparent 0%, rgba(226,185,106,.06) 18%, rgba(226,185,106,.42) 50%, rgba(255,255,255,.06) 80%, transparent 100%); }
+  :global(html.dark) .forwho-img img { filter: sepia(.28) saturate(.9) brightness(.76) contrast(1.08); }
   :global(html.dark) .forwho-body h3 { color: var(--text-dark); }
   :global(html.dark) .forwho-body p { color: var(--text-mid); }
 
   @media (max-width: 480px) {
     .forwho-img { height: 132px; }
-    .forwho-img-placeholder { font-size: 9px; letter-spacing: 1px; }
     .forwho-body { padding: 17px 16px 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .forwho-img::before,
+    .forwho-img::after {
+      animation: none;
+    }
+  }
+
+  @keyframes image-glow {
+    0%, 100% { opacity: .42; transform: scale(.96) translateZ(0); }
+    50% { opacity: .72; transform: scale(1.04) translateZ(0); }
+  }
+
+  @keyframes image-shine {
+    0%, 18% { transform: translate3d(-30%, 0, 0) rotate(8deg); opacity: 0; }
+    30% { opacity: 1; }
+    52% { transform: translate3d(390%, 0, 0) rotate(8deg); opacity: 0; }
+    100% { transform: translate3d(390%, 0, 0) rotate(8deg); opacity: 0; }
   }
 </style>

@@ -26,7 +26,7 @@ const { t } = Astro.props;
   .forwho-headline h2 { font-size: 32px; font-weight: 700; line-height: 1.25; margin-bottom: 8px; }
   .forwho-headline .headline-script { font-size: 15px; margin-top: 10px; line-height: 1.5; }
   .headline-script { font-style: italic; color: var(--teal-dark); white-space: pre-line; }
-  .forwho-cards { order: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .forwho-cards { order: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 
   @media (max-width: 980px) {
     .forwho-section { grid-template-columns: 1fr 180px; gap: 28px; padding: 64px 36px; }

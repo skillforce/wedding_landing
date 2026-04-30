@@ -43,7 +43,7 @@ export type Translations = {
     headline: string;
     scriptLine: string;
     cards: {
-      icon: string;
+      image: string;
       title: string;
       desc: string;
     }[];
@@ -84,7 +84,7 @@ export type Translations = {
     headline: string;
     scriptLine: string;
     cards: {
-      icon: string;
+      image: string;
       imgLabel: string;
       title: string;
       desc: string;
@@ -130,68 +130,68 @@ export const en: Translations = {
   hero: {
     eyebrow: "The Wedding Planning Platform",
     subtitle:
-      "The all-in-one platform for couples and wedding organizers to plan every detail with joy and ease.",
+      "From the first yes to the last dance — everything you need to plan your wedding, all in one place.",
     ctaPrimary: "Start Planning",
     ctaSecondary: "For Organizers",
-    scriptLine: "Платформа для планирования свадьбы",
+    scriptLine: "Plan the day you've always dreamed of",
   },
 
   trust: {
-    tagline: "Trusted by couples and organizers worldwide",
+    tagline: "Couples and organizers in 40+ countries plan with us",
     items: [
       {
         icon: "👥",
-        title: "RSVP without sign up",
-        sub: "Guests respond instantly",
+        title: "Guests RSVP without signing up",
+        sub: "No accounts, no friction — just a quick tap and done",
       },
       {
         icon: "💱",
-        title: "Multi-currency support",
-        sub: "Plan in any currency",
+        title: "Any currency, any country",
+        sub: "Budget in the currency that makes sense to you",
       },
       {
         icon: "✨",
-        title: "Beautiful, easy and smart",
-        sub: "Designed for everyone",
+        title: "Genuinely easy to use",
+        sub: "Anyone can pick it up and just go",
       },
     ],
   },
 
   features: {
-    headline: "Everything you need, beautifully organized",
-    scriptLine: "Всё, что нужно —\nв одном красивом месте",
+    headline: "Everything you need, in one beautiful place",
+    scriptLine: "All you need,\nin one beautiful place",
     cards: [
       {
-        icon: "👥",
+        image: "/images/features/letter.avif",
         title: "Guest Management",
-        desc: "Guests RSVP online without sign up. Collect preferences, plus-ones and more.",
+        desc: "Add your guests, store their preferences and details — everything you need to make seating arrangements a breeze.",
       },
       {
-        icon: "🪑",
+        image: "/images/features/seating.avif",
         title: "Seating Planner",
-        desc: "Design your venue with up to 40 tables and 30 seats each. Auto seating included.",
+        desc: "Design your venue layout however you like. Or let the auto-planner figure it out for you.",
       },
       {
-        icon: "💰",
+        image: "/images/features/calculator.avif",
         title: "Budget Tracking",
-        desc: "Track every expense with multi-currency, priorities and payment status.",
+        desc: "Track every expense with multi-currency support, priorities, and payment status — always know where you stand.",
       },
       {
-        icon: "⏱️",
+        image: "/images/features/timeline.avif",
         title: "Timeline Builder",
-        desc: "Plan your day minute-by-minute with beautiful timeline templates.",
+        desc: "Plan your wedding day minute by minute. Start from a template or build your own — it's your day.",
       },
       {
-        icon: "✅",
-        title: "Checklist & Tasks",
-        desc: "Stay on track with checklists by phases and smart task management.",
+        image: "/images/features/clock.avif",
+        title: "Checklists & Tasks",
+        desc: "Stay on top of everything with checklists organized by phase. Nothing slips through the cracks.",
       },
     ],
   },
 
   showcase: {
-    headline: "Plan with clarity. See everything come together.",
-    scriptLine: "Планируйте с уверенностью.\nВидьте картину целиком.",
+    headline: "Plan with confidence. Watch everything fall into place.",
+    scriptLine: "Plan with confidence.\nWatch everything\nfall into place.",
     cta: "See how it works",
     panels: {
       seating: {
@@ -245,66 +245,60 @@ export const en: Translations = {
 
   pricing: {
     headline: "Simple pricing for every story",
-    scriptLine: "Простые тарифы\nдля вашей истории",
+    scriptLine: "Simple pricing\nfor every story",
     plans: [
       {
         featured: true,
         badge: "Best for couples",
         name: "Couples Plan",
-        sub: "Для пар",
+        sub: "For Couples",
         price: "15",
         period: "year",
-        desc: "Perfect for couples planning their own wedding.",
+        desc: "Everything you need to plan your own wedding — guest list, seating, budget, timeline, and more.",
         cta: "Get Started",
       },
       {
-        name: "Organizer Plan Starter",
-        sub: "Для организаторов",
+        name: "Organizer Starter",
+        sub: "For Organizers",
         price: "20",
         period: "month",
-        desc: "Manage up to 40 couples in one workspace.",
+        desc: "Manage up to 40 couples from one workspace. Keep every client's plan separate and always within reach.",
         cta: "Choose Plan",
       },
       {
-        name: "Organizer Plan Pro",
-        sub: "Для организаторов",
+        name: "Organizer Pro",
+        sub: "For Organizers",
         price: "30",
         period: "month",
-        desc: "Unlimited couples. All features. All power.",
+        desc: "Unlimited couples, every feature, full power. For organizers who mean serious business.",
         cta: "Choose Plan",
       },
     ],
   },
 
   forWho: {
-    headline: "Made for everyone in your big day",
-    scriptLine: "Создано для всех,\nкто важен в этот день",
+    headline: "Made for everyone who makes the day special",
+    scriptLine: "Made for everyone\nwho matters most",
     cards: [
       {
-        icon: "💑",
+        image: "/images/forWho/couple.avif",
         imgLabel: "couple photo",
         title: "For Couples",
-        desc: "Plan together, stay organized and enjoy the journey. Your wedding, your way.",
+        desc: "Planning a wedding is one of the most exciting things you'll ever do — and also one of the most overwhelming. Doctor Wedding gives you a single place to keep it all: your guest list, seating chart, budget, day-of timeline, and every task along the way. Plan together in real time, stay on top of everything without the stress, and actually enjoy getting ready for the best day of your lives.",
       },
       {
-        icon: "👔",
+        image: "/images/forWho/organizator.avif",
         imgLabel: "organizer photo",
         title: "For Organizers",
-        desc: "Manage multiple weddings with ease and elegance. All clients in one workspace.",
-      },
-      {
-        icon: "📱",
-        imgLabel: "guest phone view",
-        title: "For Guests",
-        desc: "RSVP in seconds. No sign up, just love and celebration.",
+        desc: "Running multiple weddings at once means a lot can fall through the cracks — unless you have the right tools. Doctor Wedding keeps all your clients in a single workspace, each with their own guest list, budget, and timeline. No more jumping between spreadsheets, notes, and group chats. Just a clear view of every wedding you're managing, and more time for the work your clients hired you to do.",
       },
     ],
   },
 
   cta: {
-    headline: "Your story is unique.",
+    headline: "Your story is one of a kind.",
     headlineEm: "Let's plan it beautifully.",
-    sub: "Join thousands of couples and organizers who trust Doctor Wedding.",
+    sub: "Thousands of couples and organizers use Doctor Wedding to plan weddings they'll always remember.",
     ctaPrimary: "Start Planning",
     ctaSecondary: "Explore Templates",
   },
@@ -340,68 +334,68 @@ export const ru: Translations = {
   hero: {
     eyebrow: "Платформа для планирования свадьбы",
     subtitle:
-      "Всё в одном: для пар и организаторов свадеб — планируйте каждую деталь с радостью и лёгкостью.",
+      "От первого «да» до последнего танца — всё для планирования свадьбы в одном месте.",
     ctaPrimary: "Начать планирование",
     ctaSecondary: "Для организаторов",
     scriptLine: "The Wedding Planning Platform",
   },
 
   trust: {
-    tagline: "Нам доверяют пары и организаторы по всему миру",
+    tagline: "Нам доверяют пары и организаторы в более чем 40 странах",
     items: [
       {
         icon: "👥",
-        title: "RSVP без регистрации",
-        sub: "Гости отвечают мгновенно",
+        title: "Гости отвечают без регистрации",
+        sub: "Никаких аккаунтов — просто быстрый ответ",
       },
       {
         icon: "💱",
-        title: "Мультивалютность",
-        sub: "Планируйте в любой валюте",
+        title: "Любая валюта, любая страна",
+        sub: "Ведите бюджет в той валюте, в которой думаете",
       },
       {
         icon: "✨",
-        title: "Красиво, легко и умно",
-        sub: "Создано для всех",
+        title: "Удобно с первой минуты",
+        sub: "Берёшь и просто работаешь — объяснять не нужно",
       },
     ],
   },
 
   features: {
-    headline: "Всё что нужно — в одном месте",
-    scriptLine: "Everything you need, beautifully organized",
+    headline: "Всё, что нужно — в одном красивом месте",
+    scriptLine: "Всё, что нужно —\nв одном красивом месте",
     cards: [
       {
-        icon: "👥",
+        image: "/images/features/letter.avif",
         title: "Управление гостями",
-        desc: "Гости отвечают на приглашение без регистрации. Собирайте предпочтения и многое другое.",
+        desc: "Добавляйте гостей, храните их пожелания и данные — всё, что нужно для удобной рассадки.",
       },
       {
-        icon: "🪑",
+        image: "/images/features/seating.avif",
         title: "Рассадка гостей",
-        desc: "Планируйте рассадку до 40 столов и до 30 мест. Есть автоплан.",
+        desc: "Планируйте рассадку так, как удобно вам. Или доверьтесь автоплану — он справится.",
       },
       {
-        icon: "💰",
+        image: "/images/features/calculator.avif",
         title: "Учёт бюджета",
-        desc: "Учёт бюджета в разных валютах, приоритеты и статус платежей.",
+        desc: "Отслеживайте каждую трату в разных валютах. Приоритеты, статус платежей — всегда знаете, где вы стоите.",
       },
       {
-        icon: "⏱️",
+        image: "/images/features/timeline.avif",
         title: "Тайминг дня",
-        desc: "Планируйте день поминутно с готовыми шаблонами тайминга.",
+        desc: "Планируйте день поминутно. Выберите шаблон или постройте свой — это ваш день.",
       },
       {
-        icon: "✅",
+        image: "/images/features/clock.avif",
         title: "Чеклисты и задачи",
-        desc: "Чек-листы по этапам и удобное управление задачами.",
+        desc: "Чек-листы по этапам подготовки — ничего не потеряется и не забудется.",
       },
     ],
   },
 
   showcase: {
-    headline: "Планируйте с уверенностью.",
-    scriptLine: "Plan with clarity.\nSee everything\ncome together.",
+    headline: "Планируйте с уверенностью. Видьте всё как на ладони.",
+    scriptLine: "Планируйте с уверенностью.\nВидьте всё\nкак на ладони.",
     cta: "Как это работает",
     panels: {
       seating: {
@@ -449,7 +443,7 @@ export const ru: Translations = {
 
   pricing: {
     headline: "Простые тарифы для вашей истории",
-    scriptLine: "Simple pricing\nfor every story",
+    scriptLine: "Простые тарифы\nдля вашей истории",
     plans: [
       {
         featured: true,
@@ -466,7 +460,7 @@ export const ru: Translations = {
         sub: "Organizer Plan Starter",
         price: "20",
         period: "месяц",
-        desc: "Управляйте до 40 парами в одном рабочем пространстве.",
+        desc: "Ведите до 40 пар в одном рабочем пространстве. Каждый клиент — отдельно, всё под рукой.",
         cta: "Выбрать тариф",
       },
       {
@@ -474,7 +468,7 @@ export const ru: Translations = {
         sub: "Organizer Plan Pro",
         price: "30",
         period: "месяц",
-        desc: "Неограниченное количество пар. Все возможности.",
+        desc: "Неограниченное количество пар, все функции, полная мощь. Для тех, кто делает это всерьёз.",
         cta: "Выбрать тариф",
       },
     ],
@@ -482,33 +476,27 @@ export const ru: Translations = {
 
   forWho: {
     headline: "Создано для всех, кто важен в этот день",
-    scriptLine: "Made for everyone\nin your big day",
+    scriptLine: "Создано для всех,\nкто важен в этот день",
     cards: [
       {
-        icon: "💑",
+        image: "/images/forWho/couple.avif",
         imgLabel: "фото пары",
         title: "Для пар",
-        desc: "Планируйте вместе, будьте организованы и наслаждайтесь процессом. Ваша свадьба — ваш путь.",
+        desc: "Подготовка к свадьбе — это и радость, и настоящий водоворот задач. Doctor Wedding собирает всё в одном месте: список гостей, план рассадки, бюджет, тайминг дня и все задачи по этапам. Планируйте вместе в реальном времени, не теряйте нить и наслаждайтесь каждым шагом — вы заслуживаете получать удовольствие от подготовки к лучшему дню в вашей жизни.",
       },
       {
-        icon: "👔",
+        image: "/images/forWho/organizator.avif",
         imgLabel: "фото организатора",
         title: "Для организаторов",
-        desc: "Управляйте несколькими свадьбами легко и красиво. Все клиенты в одном пространстве.",
-      },
-      {
-        icon: "📱",
-        imgLabel: "вид гостя",
-        title: "Для гостей",
-        desc: "Ответьте на приглашение за секунды. Без регистрации — только любовь и праздник.",
+        desc: "Когда ведёшь несколько свадеб одновременно, мелочи легко теряются — если нет правильных инструментов. Doctor Wedding держит всех клиентов в одном пространстве: каждая пара со своим списком гостей, бюджетом и таймингом. Никаких таблиц, заметок и переписок в разных местах. Только чёткая картина по каждой свадьбе — и больше времени на то, за что вас нанимают.",
       },
     ],
   },
 
   cta: {
-    headline: "Ваша история уникальна.",
+    headline: "Ваша история неповторима.",
     headlineEm: "Давайте спланируем её красиво.",
-    sub: "Присоединяйтесь к тысячам пар и организаторов, которые доверяют Doctor Wedding.",
+    sub: "Тысячи пар и организаторов планируют свадьбы мечты с Doctor Wedding.",
     ctaPrimary: "Начать планирование",
     ctaSecondary: "Смотреть шаблоны",
   },
