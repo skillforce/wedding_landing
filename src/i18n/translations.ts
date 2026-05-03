@@ -53,6 +53,7 @@ export type Translations = {
     headline: string;
     scriptLine: string;
     cta: string;
+    tabs: string[];
     panels: {
       seating: {
         title: string;
@@ -193,6 +194,7 @@ export const en: Translations = {
     headline: "Plan with confidence. Watch everything fall into place.",
     scriptLine: "Plan with confidence.\nWatch everything\nfall into place.",
     cta: "See how it works",
+    tabs: ["Day Plan", "Guests", "Seating", "Budget", "Checklist"],
     panels: {
       seating: {
         title: "Seating Layout",
@@ -304,7 +306,7 @@ export const en: Translations = {
   },
 
   footer: {
-    copyright: "© 2024 Doctor Wedding",
+    copyright: "© 2026 Doctor Wedding",
     tagline: "Made with love for every love story ♥",
     nav: {
       features: "Features",
@@ -397,6 +399,7 @@ export const ru: Translations = {
     headline: "Планируйте с уверенностью. Видьте всё как на ладони.",
     scriptLine: "Планируйте с уверенностью.\nВидьте всё\nкак на ладони.",
     cta: "Как это работает",
+    tabs: ["День", "Гости", "Рассадка", "Бюджет", "Чеклист"],
     panels: {
       seating: {
         title: "План рассадки",
@@ -502,7 +505,7 @@ export const ru: Translations = {
   },
 
   footer: {
-    copyright: "© 2024 Doctor Wedding",
+    copyright: "© 2026 Doctor Wedding",
     tagline: "Создано с любовью для каждой истории любви ♥",
     nav: {
       features: "Функции",

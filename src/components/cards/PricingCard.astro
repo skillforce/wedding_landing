@@ -2,8 +2,7 @@
 import type { Translations } from "../../i18n/translations";
 import Button from "../base/Button.astro";
 import { ButtonType } from "../base/Button.types";
-import IconBox from "../icons/IconBox.astro";
-import IconStar from "../icons/IconStar.astro";
+import IconMoney from "../icons/IconMoney.astro";
 
 type PricingPlan = Translations["pricing"]["plans"][number];
 
@@ -29,10 +28,7 @@ const { plan } = Astro.props;
     size="compact"
     fullWidth
   >
-    {plan.featured
-      ? <IconStar size={13} />
-      : <IconBox size={13} />
-    }
+    <IconMoney />
     {plan.cta}
   </Button>
 </div>

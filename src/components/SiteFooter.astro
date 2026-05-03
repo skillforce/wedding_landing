@@ -30,17 +30,18 @@ const socialLinks = [
         <a href={href}>{label}</a>
       ))}
     </nav>
-
-    <div class="footer-social">
-      {socialLinks.map(({ label, href }) => (
-        <a href={href} class="social-btn">{label}</a>
-      ))}
-    </div>
   </div>
 
   <div class="footer-bottom">
     <p>{t.footer.copyright}</p>
-    <p>{t.footer.tagline}</p>
+    <img
+      class="provider-logo"
+      src="/images/logo/provider_logo.avif"
+      alt="Provider logo"
+      width="100"
+      height="100"
+      loading="lazy"
+    />
   </div>
 </footer>
 
@@ -48,31 +49,29 @@ const socialLinks = [
   footer { padding: 40px 56px 24px; border-top: 1px solid var(--border); background: var(--ivory); transition: background 0.2s, border-color 0.2s; }
   :global(html.dark) footer { background: var(--navy2); border-top-color: var(--border); }
 
-  .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 28px; }
+  .footer-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 32px; margin-bottom: 28px; }
 
-  .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+  .footer-links { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; grid-column: 2; }
   .footer-links a { font-size: 12.5px; color: var(--text-soft); text-decoration: none; transition: 0.15s; }
   .footer-links a:hover { color: var(--text-dark); }
 
-  .footer-social { display: flex; gap: 10px; }
-  .social-btn { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--text-soft); text-decoration: none; transition: 0.2s; }
-  .social-btn:hover { border-color: var(--teal-dark); color: var(--teal-dark); }
-  :global(html.dark) .social-btn:hover { border-color: var(--gold); color: var(--gold); }
 
   .footer-bottom { border-top: 1px solid var(--border); padding-top: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
   .footer-bottom p { font-size: 11px; color: var(--text-soft); }
+  .provider-logo { display: block; width: 100px; height: 100px; object-fit: contain; }
 
   @media (max-width: 760px) {
     footer { padding: 36px 24px 22px; }
-    .footer-inner { align-items: flex-start; gap: 22px; }
+    .footer-inner { gap: 22px; }
     .footer-links { gap: 14px 20px; }
+    .provider-logo { width: 70px; height: 70px; }
   }
 
   @media (max-width: 480px) {
     footer { padding: 32px 16px 20px; }
-    .footer-inner { flex-direction: column; margin-bottom: 22px; }
-    .footer-links {  align-self: center }
-    .footer-social { gap: 8px; align-self: center }
-    .footer-bottom { align-items: flex-start; flex-direction: column; }
+    .footer-inner { display: flex; flex-direction: column; margin-bottom: 22px; }
+    .footer-links { align-self: center; text-align: center; }
+    .footer-social { gap: 8px; align-self: center; }
+    .footer-bottom { align-items: center; flex-direction: column-reverse; }
   }
 </style>

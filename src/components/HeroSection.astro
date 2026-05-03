@@ -2,8 +2,8 @@
 import type { Translations } from "../i18n/translations";
 import Button from "./base/Button.astro";
 import { ButtonType } from "./base/Button.types";
-import IconBoxPlus from "./icons/IconBoxPlus.astro";
-import IconStar from "./icons/IconStar.astro";
+import IconOrganizer from "./icons/IconOrganizer.astro";
+import IconRings from "./icons/IconRings.astro";
 
 interface Props {
   t: Translations;
@@ -30,10 +30,10 @@ const { t } = Astro.props;
 
   <div class="hero-btns">
     <Button type={ButtonType.Primary}>
-      <IconStar size={14} />{t.hero.ctaPrimary}
+      <IconOrganizer />{t.hero.ctaPrimary}
     </Button>
     <Button type={ButtonType.Secondary}>
-      <IconBoxPlus size={14} />{t.hero.ctaSecondary}
+      <IconRings />{t.hero.ctaSecondary}
     </Button>
   </div>
   <div class="creep-line"></div>
@@ -41,7 +41,7 @@ const { t } = Astro.props;
 
 <style>
   .hero {
-    min-height: 650px; position: relative; overflow: hidden;
+    min-height: 100vh; position: relative; overflow: hidden;
     padding: 10px;
     background-image: url("/images/hero/hero_backround_light.avif");
     background-position: center;
@@ -86,7 +86,7 @@ const { t } = Astro.props;
 
   @media (max-width: 760px) {
     .hero {
-      min-height: 560px;
+      min-height: 100dvh;
       padding: 96px 24px 44px;
       background-image: url("/images/hero/hero_backround_light_mobile.avif");
       background-position: center top;
@@ -102,7 +102,7 @@ const { t } = Astro.props;
 
   @media (max-width: 480px) {
     .hero {
-      min-height: 650px;
+      min-height: 100dvh;
       padding: 92px 16px 40px;
     }
     .hero-eyebrow { font-size: 15px; letter-spacing: 2px; margin-bottom: 12px; }

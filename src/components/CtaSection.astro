@@ -4,8 +4,8 @@ import Button from "./base/Button.astro";
 import { ButtonType } from "./base/Button.types";
 import CtaFloralLeft from "./icons/CtaFloralLeft.astro";
 import CtaFloralRight from "./icons/CtaFloralRight.astro";
-import IconBoxPlus from "./icons/IconBoxPlus.astro";
-import IconStar from "./icons/IconStar.astro";
+import IconOrganizer from "./icons/IconOrganizer.astro";
+import IconRings from "./icons/IconRings.astro";
 
 interface Props {
   t: Translations;
@@ -21,10 +21,10 @@ const { t } = Astro.props;
   <p class="cta-sub serif">{t.cta.sub}</p>
   <div class="cta-btns">
     <Button type={ButtonType.Primary} size="lg">
-      <IconStar size={15} />{t.cta.ctaPrimary}
+      <IconOrganizer />{t.cta.ctaPrimary}
     </Button>
     <Button type={ButtonType.Secondary} size="lg">
-      <IconBoxPlus size={15} />{t.cta.ctaSecondary}
+      <IconRings />{t.cta.ctaSecondary}
     </Button>
   </div>
 </section>
