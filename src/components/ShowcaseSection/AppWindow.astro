@@ -1,7 +1,7 @@
 ---
 interface Tab {
   label: string;
-  image: string;
+  video: string;
 }
 
 interface Props {
@@ -32,12 +32,15 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
   </div>
   <div class="panel-body">
     {tabs.map((tab, i) => (
-      <img
-        class:list={["tab-img", { active: i === 0 }]}
-        src={tab.image}
-        alt={tab.label}
-        loading={i === 0 ? "eager" : "lazy"}
+      <video
+        class:list={["tab-video", { active: i === 0 }]}
+        src={tab.video}
+        preload={i === 0 ? "auto" : "none"}
+        muted
+        loop
+        playsinline
         draggable="false"
+        aria-label={tab.label}
       />
     ))}
   </div>
@@ -46,14 +49,58 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
 <script>
   document.querySelectorAll<HTMLElement>(".app-window").forEach(win => {
     const tabs = win.querySelectorAll<HTMLButtonElement>(".tab");
-    const imgs = win.querySelectorAll<HTMLImageElement>(".tab-img");
+    const videos = win.querySelectorAll<HTMLVideoElement>(".tab-video");
+
+    // Play/pause active video based on section visibility
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          const active = win.querySelector<HTMLVideoElement>(".tab-video.active");
+          if (entry.isIntersecting) {
+            active?.play().catch(() => {});
+          } else {
+            active?.pause();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(win);
+
+    // Preload remaining videos during idle time while user is on hero
+    function scheduleIdlePreload() {
+      videos.forEach((video, i) => {
+        if (i === 0) return;
+        const load = () => { video.preload = "auto"; };
+        if ("requestIdleCallback" in window) {
+          (window as any).requestIdleCallback(load, { timeout: 5000 });
+        } else {
+          setTimeout(load, i * 800);
+        }
+      });
+    }
+
+    if (document.readyState === "complete") {
+      scheduleIdlePreload();
+    } else {
+      window.addEventListener("load", scheduleIdlePreload, { once: true });
+    }
+
     tabs.forEach((tab, i) => {
       tab.addEventListener("click", () => {
+        const prevVideo = win.querySelector<HTMLVideoElement>(".tab-video.active");
+        prevVideo?.pause();
+
         tabs.forEach(t => { t.classList.remove("active"); t.setAttribute("aria-selected", "false"); });
-        imgs.forEach(img => img.classList.remove("active"));
+        videos.forEach(v => v.classList.remove("active"));
+
         tab.classList.add("active");
         tab.setAttribute("aria-selected", "true");
-        imgs[i].classList.add("active");
+
+        const nextVideo = videos[i] as HTMLVideoElement;
+        nextVideo.classList.add("active");
+        nextVideo.preload = "auto";
+        nextVideo.play().catch(() => {});
       });
     });
   });
@@ -128,7 +175,7 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
     overflow: hidden;
   }
 
-  .tab-img {
+  .tab-video {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -138,7 +185,7 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
     transition: opacity 0.25s ease;
     pointer-events: none;
   }
-  .tab-img.active { opacity: 1; }
+  .tab-video.active { opacity: 1; }
 
   /* Dark mode */
   :global(html.dark) .app-window {

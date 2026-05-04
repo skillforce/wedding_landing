@@ -7,14 +7,14 @@ interface Props {
 }
 const { t } = Astro.props;
 
-const tabImages = [
-  "/images/feature_example/day_scenario.avif",
-  "/images/feature_example/guests_list.avif",
-  "/images/feature_example/seating_arrangements.avif",
-  "/images/feature_example/budget.avif",
-  "/images/feature_example/checklist.avif",
+const tabVideos = [
+  "/images/feature_example/scenarion_comb.webm",
+  "/images/feature_example/guest_comp.webm",
+  "/images/feature_example/seating_comp.webm",
+  "/images/feature_example/budget_comp.webm",
+  "/images/feature_example/checklist_comp.webm",
 ];
-const tabs = t.showcase.tabs.map((label, i) => ({ label, image: tabImages[i] }));
+const tabs = t.showcase.tabs.map((label, i) => ({ label, video: tabVideos[i] }));
 ---
 <section class="showcase-section fade-in" id="showcase">
   <div class="showcase-text">
