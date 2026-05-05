@@ -32,12 +32,23 @@ const { t } = Astro.props;
 
   @media (max-width: 760px) {
     footer { padding: 28px 24px; }
-    .footer-inner { gap: 22px; }
+    .footer-inner {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .footer-copy {
+      justify-self: center;
+      text-align: center;
+    }
     .provider-logo { width: 70px; height: 70px; }
   }
 
   @media (max-width: 480px) {
     footer { padding: 28px 16px; }
-    .footer-inner { display: flex; flex-direction: column; }
+    .footer-inner { gap: 10px; }
+    .footer-copy { font-size: 11px; line-height: 1.25; }
+    :global(.site-logo--footer .logo-img) { height: 44px; }
+    .provider-logo { width: 60px; height: 60px; }
   }
 </style>

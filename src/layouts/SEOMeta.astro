@@ -1,4 +1,7 @@
 ---
+import { getImage } from "astro:assets";
+import defaultOgSrc from "../assets/og/og.jpg";
+
 interface Props {
   title: string;
   description?: string;
@@ -15,12 +18,15 @@ const {
   description,
   ogTitle,
   ogDescription,
-  ogImage = "https://doctor-wedding.com/images/logo/logo_light.avif",
+  ogImage,
   ogImageAlt,
   canonical = "https://doctor-wedding.com/",
   locale = "en",
 } = Astro.props;
 
+const site = Astro.site?.toString().replace(/\/$/, "") ?? "https://doctor-wedding.com";
+const defaultOg = await getImage({ src: defaultOgSrc, format: "jpeg" });
+const resolvedOgImage       = ogImage ?? `${site}${defaultOg.src}`;
 const resolvedOgTitle       = ogTitle       ?? title;
 const resolvedOgDescription = ogDescription ?? description ?? "";
 const resolvedOgImageAlt    = ogImageAlt    ?? "Doctor Wedding";
@@ -40,9 +46,9 @@ const ogLocaleAlt = locale === "ru" ? "en_US"  : "ru_RU";
 <meta property="og:url"              content={canonical}>
 <meta property="og:title"            content={resolvedOgTitle}>
 <meta property="og:description"      content={resolvedOgDescription}>
-<meta property="og:image"            content={ogImage}>
-<meta property="og:image:secure_url" content={ogImage}>
-<meta property="og:image:type"       content="image/avif">
+<meta property="og:image"            content={resolvedOgImage}>
+<meta property="og:image:secure_url" content={resolvedOgImage}>
+<meta property="og:image:type"       content="image/jpeg">
 <meta property="og:image:alt"        content={resolvedOgImageAlt}>
 <meta property="og:image:width"      content="1200">
 <meta property="og:image:height"     content="630">
@@ -53,7 +59,7 @@ const ogLocaleAlt = locale === "ru" ? "en_US"  : "ru_RU";
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:title"       content={resolvedOgTitle}>
 <meta name="twitter:description" content={resolvedOgDescription}>
-<meta name="twitter:image"       content={ogImage}>
+<meta name="twitter:image"       content={resolvedOgImage}>
 <meta name="twitter:image:alt"   content={resolvedOgImageAlt}>
 
 <!-- hreflang -->
