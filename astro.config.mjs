@@ -2,7 +2,6 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://doctor.vpname.cc",
   server: {
     host: true,
     allowedHosts: true,
