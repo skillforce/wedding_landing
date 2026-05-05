@@ -27,18 +27,11 @@ RUN apk add --no-cache brotli && \
     done
 
 # ── Stage 2: serve ────────────────────────────────────────────────────────────
-# nginx:alpine (not slim) — needed for gzip_static and brotli_static modules
-FROM nginx:alpine AS runner
-
-RUN apk add --no-cache nginx-mod-http-brotli
+# macbre/nginx-brotli has brotli compiled in — no apk install or load_module needed
+FROM macbre/nginx-brotli:latest AS runner
 
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /app/dist /usr/share/nginx/html
-
-RUN printf '\
-load_module /usr/lib/nginx/modules/ngx_http_brotli_filter_module.so;\n\
-load_module /usr/lib/nginx/modules/ngx_http_brotli_static_module.so;\n\
-' > /etc/nginx/modules/brotli.conf
 
 RUN printf 'server {\n\
     listen 80;\n\

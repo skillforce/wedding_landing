@@ -43,9 +43,10 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
 
 <script>
   document.querySelectorAll<HTMLElement>("[data-video-tabs]").forEach(videoTabs => {
-    const tabs     = videoTabs.querySelectorAll<HTMLButtonElement>(".tab");
-    const videos   = videoTabs.querySelectorAll<HTMLVideoElement>(".tab-video");
-    const playBtn  = videoTabs.querySelector<HTMLButtonElement>(".play-btn");
+    const tabs      = videoTabs.querySelectorAll<HTMLButtonElement>(".tab");
+    const videos    = videoTabs.querySelectorAll<HTMLVideoElement>(".tab-video");
+    const playBtn   = videoTabs.querySelector<HTMLButtonElement>(".play-btn");
+    const panelBody = videoTabs.querySelector<HTMLElement>(".panel-body");
     let firstVideoPlayed = false;
 
     function playVideo(video: HTMLVideoElement) {
@@ -62,6 +63,7 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
     playBtn?.addEventListener("click", () => {
       firstVideoPlayed = true;
       hidePlayBtn();
+      panelBody?.classList.add("playing");
       playVideo(videos[0] as HTMLVideoElement);
     });
 
@@ -160,9 +162,12 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
 
   .panel-body {
     position: relative;
-    background: var(--ivory2);
+    background: var(--ivory2) url("/images/features/dikhololo_night.avif") center / cover no-repeat;
     aspect-ratio: 16 / 7;
     overflow: hidden;
+  }
+  .panel-body.playing {
+    background: var(--ivory2);
   }
 
   .tab-video {
@@ -217,7 +222,7 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
     background: rgba(14, 20, 36, 0.8);
     border-bottom-color: rgba(184, 148, 63, 0.18);
   }
-  :global(html.dark) .panel-body { background: rgba(10, 14, 26, 0.6); }
+  :global(html.dark) .panel-body.playing { background: rgba(10, 14, 26, 0.6); }
 
   @media (max-width: 760px) {
     .panel-header { padding: 9px 12px; gap: 10px; }
