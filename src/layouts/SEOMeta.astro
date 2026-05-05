@@ -1,7 +1,4 @@
 ---
-import { getImage } from "astro:assets";
-import defaultOgSrc from "../assets/og/og.jpg";
-
 interface Props {
   title: string;
   description?: string;
@@ -24,9 +21,7 @@ const {
   locale = "en",
 } = Astro.props;
 
-const site = Astro.site?.toString().replace(/\/$/, "") ?? "https://doctor-wedding.com";
-const defaultOg = await getImage({ src: defaultOgSrc, format: "jpeg" });
-const resolvedOgImage       = ogImage ?? `${site}${defaultOg.src}`;
+const resolvedOgImage       = ogImage ?? "https://doctor-wedding.com/og.jpg";
 const resolvedOgTitle       = ogTitle       ?? title;
 const resolvedOgDescription = ogDescription ?? description ?? "";
 const resolvedOgImageAlt    = ogImageAlt    ?? "Doctor Wedding";
