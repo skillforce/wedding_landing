@@ -33,34 +33,7 @@ FROM macbre/nginx-brotli:latest AS runner
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-RUN printf 'server {\n\
-    listen 80;\n\
-    root /usr/share/nginx/html;\n\
-    index index.html;\n\
-\n\
-    # Brotli — served from pre-built .br files, no runtime CPU cost\n\
-    brotli_static on;\n\
-\n\
-    # Gzip — served from pre-built .gz files for older clients\n\
-    gzip_static on;\n\
-    gzip_vary on;\n\
-\n\
-    # Binary formats — already compressed, never gzip again\n\
-    location ~* \\.(avif|webp|webm|woff2|woff|ttf|ico|png|jpg|jpeg)$ {\n\
-        expires 1y;\n\
-        add_header Cache-Control "public, immutable";\n\
-    }\n\
-\n\
-    # Hashed assets — safe to cache forever\n\
-    location ~* \\.(css|js)$ {\n\
-        expires 1y;\n\
-        add_header Cache-Control "public, immutable";\n\
-    }\n\
-\n\
-    location / {\n\
-        try_files $uri $uri/ $uri.html =404;\n\
-    }\n\
-}\n' > /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
