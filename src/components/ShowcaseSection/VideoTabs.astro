@@ -1,0 +1,237 @@
+---
+import VideoTabBar from "./VideoTabBar.astro";
+import IconPlay from "../icons/IconPlay.astro";
+
+interface Tab {
+  label: string;
+  video: string;
+}
+
+interface Props {
+  tabs: Tab[];
+}
+
+const { tabs } = Astro.props;
+const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
+---
+
+<div class="video-tabs" data-video-tabs>
+  <div class="panel-header">
+    <div class="traffic-lights">
+      {panelDots.map(cls => <div class:list={["panel-dot", cls]}></div>)}
+    </div>
+    <VideoTabBar tabs={tabs} />
+  </div>
+  <div class="panel-body">
+    {tabs.map((tab, i) => (
+      <video
+        class:list={["tab-video", { active: i === 0 }]}
+        src={tab.video}
+        preload="none"
+        muted
+        loop
+        playsinline
+        draggable="false"
+        aria-label={tab.label}
+      />
+    ))}
+    <button class="play-btn" aria-label="Play">
+      <IconPlay />
+    </button>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-video-tabs]").forEach(videoTabs => {
+    const tabs     = videoTabs.querySelectorAll<HTMLButtonElement>(".tab");
+    const videos   = videoTabs.querySelectorAll<HTMLVideoElement>(".tab-video");
+    const playBtn  = videoTabs.querySelector<HTMLButtonElement>(".play-btn");
+    let firstVideoPlayed = false;
+
+    function playVideo(video: HTMLVideoElement) {
+      if (video.preload === "none") video.preload = "auto";
+      video.play().catch(() => {});
+    }
+
+    function showPlayBtn() { playBtn?.classList.add("visible"); }
+    function hidePlayBtn() { playBtn?.classList.remove("visible"); }
+
+    // First tab requires an explicit play click
+    showPlayBtn();
+
+    playBtn?.addEventListener("click", () => {
+      firstVideoPlayed = true;
+      hidePlayBtn();
+      playVideo(videos[0] as HTMLVideoElement);
+    });
+
+    // Pause / resume active video on scroll in/out of view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          const active = videoTabs.querySelector<HTMLVideoElement>(".tab-video.active");
+          if (!active) return;
+          if (entry.isIntersecting) {
+            // Only autoplay if the user has already interacted with the first video
+            // (or if a non-first tab is active)
+            const activeIndex = Array.from(videos).indexOf(active);
+            if (activeIndex !== 0 || firstVideoPlayed) playVideo(active);
+          } else {
+            active.pause();
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(videoTabs);
+
+    function scheduleIdlePreload() {
+      // Skip on mobile — loading 5 webM files simultaneously causes memory pressure
+      // that triggers a browser page reload. Videos load on-demand via tab clicks instead.
+      if (window.innerWidth < 768) return;
+
+      videos.forEach((video, i) => {
+        if (i === 0) return;
+        const load = () => { video.preload = "auto"; };
+        if ("requestIdleCallback" in window) {
+          (window as any).requestIdleCallback(load, { timeout: 5000 });
+        } else {
+          setTimeout(load, i * 800);
+        }
+      });
+    }
+
+    if (document.readyState === "complete") {
+      scheduleIdlePreload();
+    } else {
+      window.addEventListener("load", scheduleIdlePreload, { once: true });
+    }
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => {
+        const prevVideo = videoTabs.querySelector<HTMLVideoElement>(".tab-video.active");
+        prevVideo?.pause();
+
+        tabs.forEach(t => { t.classList.remove("active"); t.setAttribute("aria-selected", "false"); });
+        videos.forEach(v => v.classList.remove("active"));
+
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+
+        const nextVideo = videos[i] as HTMLVideoElement;
+        nextVideo.classList.add("active");
+
+        if (i === 0 && !firstVideoPlayed) {
+          showPlayBtn();
+        } else {
+          hidePlayBtn();
+          playVideo(nextVideo);
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .video-tabs {
+    display: contents;
+  }
+
+  .panel-header {
+    padding: 10px 14px;
+    background: var(--ivory);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .traffic-lights {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .panel-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .panel-dot-red    { background: #ff5f57; }
+  .panel-dot-yellow { background: #ffbd2e; }
+  .panel-dot-gold   { background: #c9a84c; }
+
+  .panel-body {
+    position: relative;
+    background: var(--ivory2);
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+  }
+
+  .tab-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+  }
+  .tab-video.active { opacity: 1; }
+
+  .play-btn {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--teal-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    z-index: 2;
+  }
+  .play-btn svg { width: 24px; height: 24px; margin-left: 3px; }
+  .play-btn.visible { opacity: 1; pointer-events: auto; }
+  .play-btn:hover { transform: scale(1.08); }
+  .play-btn:active { transform: scale(0.96); }
+
+  :global(html.dark) .play-btn {
+    background: rgba(22, 32, 54, 0.92);
+    color: var(--gold);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  @media (max-width: 480px) {
+    .play-btn { width: 48px; height: 48px; }
+    .play-btn svg { width: 20px; height: 20px; }
+  }
+
+  :global(html.dark) .panel-header {
+    background: rgba(14, 20, 36, 0.8);
+    border-bottom-color: rgba(184, 148, 63, 0.18);
+  }
+  :global(html.dark) .panel-body { background: rgba(10, 14, 26, 0.6); }
+
+  @media (max-width: 760px) {
+    .panel-header { padding: 9px 12px; gap: 10px; }
+    .panel-dot { width: 9px; height: 9px; }
+    .panel-body { aspect-ratio: 16 / 8; }
+  }
+
+  @media (max-width: 480px) {
+    .panel-body { aspect-ratio: 16 / 9; }
+  }
+
+  @media (max-width: 380px) {
+    .panel-header { padding: 8px 10px; gap: 8px; }
+    .panel-dot { width: 7px; height: 7px; }
+    .traffic-lights { gap: 4px; }
+  }
+</style>

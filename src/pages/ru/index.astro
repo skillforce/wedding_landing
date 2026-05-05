@@ -13,7 +13,15 @@ import Layout from "../../layouts/Layout.astro";
 
 const t = ru;
 ---
-<Layout locale="ru" title="Doctor Wedding — Мы планируем. Вы празднуете.">
+<Layout
+  locale="ru"
+  title="Doctor Wedding — Мы планируем. Вы празднуете."
+  description="Приложение для планирования свадьбы: управление гостями и рассадкой, учёт бюджета в нескольких валютах, тайминг дня и чеклисты подготовки. Для пар и организаторов."
+  ogTitle="Doctor Wedding — умный планировщик свадьбы"
+  ogDescription="Гости и рассадка, бюджет в нескольких валютах, тайминг дня и чеклисты — всё для идеальной свадьбы в одном приложении."
+  ogImageAlt="Doctor Wedding — приложение для планирования свадьбы"
+  canonical="https://doctor-wedding.com/ru/"
+>
   <SiteHeader t={t} />
   <HeroSection t={t} />
   <FeaturesSection t={t} />

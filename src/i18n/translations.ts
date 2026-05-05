@@ -117,7 +117,7 @@ export type Translations = {
 
 export const en: Translations = {
   locale: "en",
-  otherLocaleUrl: "/ru",
+  otherLocaleUrl: "/",
   otherLocaleLabel: "RU",
 
   nav: {
@@ -191,8 +191,8 @@ export const en: Translations = {
   },
 
   showcase: {
-    headline: "Plan with confidence. Watch everything fall into place.",
-    scriptLine: "Plan with confidence.\nWatch everything\nfall into place.",
+    headline: "Your wedding plan, clearly in view",
+    scriptLine: "Guests, seating, budget, and timeline stay organized in one calm workspace.",
     cta: "See how it works",
     tabs: ["Day Plan", "Guests", "Seating", "Budget", "Checklist"],
     panels: {
@@ -256,7 +256,7 @@ export const en: Translations = {
         price: "4.99",
         period: "month",
         desc: "Everything you need to plan your own wedding — guest list, seating, budget, timeline, and more.",
-        cta: "Get Started",
+        cta: "Choose Plan",
       },
       {
         name: "Organizer Plan",
@@ -313,7 +313,7 @@ export const en: Translations = {
 
 export const ru: Translations = {
   locale: "ru",
-  otherLocaleUrl: "/",
+  otherLocaleUrl: "/en",
   otherLocaleLabel: "EN",
 
   nav: {
@@ -387,8 +387,8 @@ export const ru: Translations = {
   },
 
   showcase: {
-    headline: "Планируйте с уверенностью. Видьте всё как на ладони.",
-    scriptLine: "Планируйте с уверенностью.\nВидьте всё\nкак на ладони.",
+    headline: "Вся свадьба — в одном понятном плане",
+    scriptLine: "Гости, рассадка, бюджет и тайминг всегда под рукой.",
     cta: "Как это работает",
     tabs: ["День", "Гости", "Рассадка", "Бюджет", "Чеклист"],
     panels: {
@@ -446,7 +446,7 @@ export const ru: Translations = {
         price: "4.99",
         period: "месяц",
         desc: "Всё необходимое для планирования свадьбы: список гостей, рассадка, бюджет, тайминг и многое другое.",
-        cta: "Начать",
+        cta: "Выбрать тариф",
       },
       {
         name: "Тариф организатора",
@@ -460,8 +460,8 @@ export const ru: Translations = {
   },
 
   forWho: {
-    headline: "Создано для всех, кто важен в этот день",
-    scriptLine: "Создано для всех,\nкто важен в этот день",
+    headline: "Для пар и организаторов",
+    scriptLine: "Всё для подготовки свадьбы — в одном удобном пространстве",
     cards: [
       {
         image: "/images/forWho/couple.avif",

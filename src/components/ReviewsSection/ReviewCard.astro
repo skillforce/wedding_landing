@@ -10,7 +10,7 @@ const { review } = Astro.props;
 
 <article class="review-card">
   <div class="review-profile">
-    <img class="review-photo" src={review.photo} alt={review.name} loading="lazy" />
+    <img class="review-photo" src={review.photo} alt={review.name} loading="lazy" width="46" height="46" />
     <div class="review-head">
       <h3 class="serif">{review.name}</h3>
       <span class:list={['review-role', review.role]}>{review.role}</span>

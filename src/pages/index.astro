@@ -8,12 +8,20 @@ import ReviewsSection from "../components/ReviewsSection/index.astro";
 import ShowcaseSection from "../components/ShowcaseSection/index.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
-import { en } from "../i18n/translations";
+import { ru } from "../i18n/translations";
 import Layout from "../layouts/Layout.astro";
 
-const t = en;
+const t = ru;
 ---
-<Layout locale="en">
+<Layout
+  locale="ru"
+  title="Doctor Wedding — Мы планируем. Вы празднуете."
+  description="Приложение для планирования свадьбы: управление гостями и рассадкой, учёт бюджета в нескольких валютах, тайминг дня и чеклисты подготовки. Для пар и организаторов."
+  ogTitle="Doctor Wedding — умный планировщик свадьбы"
+  ogDescription="Гости и рассадка, бюджет в нескольких валютах, тайминг дня и чеклисты — всё для идеальной свадьбы в одном приложении."
+  ogImageAlt="Doctor Wedding — приложение для планирования свадьбы"
+  canonical="https://doctor-wedding.com/"
+>
   <SiteHeader t={t} />
   <HeroSection t={t} />
   <FeaturesSection t={t} />

@@ -4,6 +4,7 @@ import Button from "./base/Button.astro";
 import { ButtonType } from "./base/Button.types";
 import CtaFloralLeft from "./icons/CtaFloralLeft.astro";
 import CtaFloralRight from "./icons/CtaFloralRight.astro";
+import CtaTracery from "./icons/CtaTracery.astro";
 import IconOrganizer from "./icons/IconOrganizer.astro";
 import IconRings from "./icons/IconRings.astro";
 
@@ -13,24 +14,41 @@ interface Props {
 const { t } = Astro.props;
 ---
 <section class="cta-section fade-in">
+  <div class="cta-tracery-wrap" aria-hidden="true">
+    <CtaTracery />
+  </div>
   <CtaFloralLeft />
   <CtaFloralRight />
-  <h2 class="serif">
-    {t.cta.headline}<br><em>{t.cta.headlineEm}</em>
-  </h2>
-  <p class="cta-sub serif">{t.cta.sub}</p>
-  <div class="cta-btns">
-    <Button type={ButtonType.Primary} size="lg">
-      <IconOrganizer />{t.cta.ctaPrimary}
-    </Button>
-    <Button type={ButtonType.Secondary} size="lg">
-      <IconRings />{t.cta.ctaSecondary}
-    </Button>
+  <div class="cta-content">
+    <h2 class="serif">
+      {t.cta.headline}<br><em>{t.cta.headlineEm}</em>
+    </h2>
+    <p class="cta-sub serif">{t.cta.sub}</p>
+    <div class="cta-btns">
+      <Button type={ButtonType.Primary} size="lg">
+        <IconOrganizer />{t.cta.ctaPrimary}
+      </Button>
+      <Button type={ButtonType.Secondary} size="lg">
+        <IconRings />{t.cta.ctaSecondary}
+      </Button>
+    </div>
   </div>
 </section>
 
 <style>
-  .cta-section { padding: 90px 56px; text-align: center; background: var(--ivory); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .cta-section { padding: 90px 56px; text-align: center; background: var(--ivory); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; isolation: isolate; }
+  .cta-tracery-wrap { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+  .cta-tracery-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 10% 8%;
+    background: radial-gradient(circle at 50% 50%, rgba(42,78,74,.07), transparent 62%);
+    filter: blur(20px);
+  }
+  :global(html.dark) .cta-tracery-wrap::before {
+    background: radial-gradient(circle at 50% 50%, rgba(226,185,106,.09), transparent 64%);
+  }
+  .cta-content { position: relative; z-index: 2; }
   .cta-section h2 { font-size: 44px; font-weight: 700; line-height: 1.2; max-width: 640px; margin: 0 auto 12px; }
   .cta-section h2 em { font-style: italic; color: var(--teal-dark); }
   .cta-sub { font-size: 14px; color: var(--text-soft); margin-bottom: 32px; font-style: italic; }
@@ -38,11 +56,13 @@ const { t } = Astro.props;
 
   @media (max-width: 760px) {
     .cta-section { padding: 72px 24px; }
+    .cta-tracery-wrap { inset: 12px; }
     .cta-section h2 { font-size: 34px; }
   }
 
   @media (max-width: 480px) {
     .cta-section { padding: 60px 16px; }
+    .cta-tracery-wrap { inset: 10px; }
     .cta-section h2 { font-size: 28px; }
     .cta-sub { font-size: 13px; line-height: 1.5; margin-bottom: 24px; }
     .cta-btns { gap: 10px; }

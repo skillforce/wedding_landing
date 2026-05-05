@@ -1,0 +1,125 @@
+---
+---
+
+<svg
+  class="pricing-tracery"
+  viewBox="0 -70 980 560"
+  fill="none"
+  preserveAspectRatio="xMidYMid meet"
+  aria-hidden="true"
+>
+  <defs>
+    <linearGradient id="pricing-tracery-main" x1="120" y1="360" x2="860" y2="52" gradientUnits="userSpaceOnUse">
+      <stop class="tracery-stop-muted" offset="0" />
+      <stop class="tracery-stop-bright" offset="0.48" />
+      <stop class="tracery-stop-muted" offset="1" />
+    </linearGradient>
+    <linearGradient id="pricing-tracery-glint" x1="260" y1="96" x2="720" y2="330" gradientUnits="userSpaceOnUse">
+      <stop class="tracery-stop-soft" offset="0" />
+      <stop class="tracery-stop-bright" offset="0.5" />
+      <stop class="tracery-stop-soft" offset="1" />
+    </linearGradient>
+  </defs>
+
+  <g class="tracery-glow">
+    <path class="tracery-line tracery-slow" d="M490 392 C490 315 492 262 490 204 C488 138 490 92 490 32" />
+    <path class="tracery-line" d="M102 382 C228 312 292 196 490 32 C688 196 752 312 878 382" />
+    <path class="tracery-line tracery-delay-1" d="M176 362 C252 282 330 250 490 204 C650 250 728 282 804 362" />
+    <path class="tracery-line tracery-delay-2" d="M250 374 C308 292 358 184 490 116 C622 184 672 292 730 374" />
+    <path class="tracery-line tracery-delay-3" d="M320 360 C350 274 384 214 490 162 C596 214 630 274 660 360" />
+
+    <path class="tracery-line tracery-fine tracery-delay-1" d="M490 204 C426 186 374 138 332 62" />
+    <path class="tracery-line tracery-fine tracery-delay-1" d="M490 204 C554 186 606 138 648 62" />
+    <path class="tracery-line tracery-fine tracery-delay-2" d="M404 236 C346 206 284 198 210 220" />
+    <path class="tracery-line tracery-fine tracery-delay-2" d="M576 236 C634 206 696 198 770 220" />
+    <path class="tracery-line tracery-fine tracery-delay-3" d="M348 314 C300 288 238 294 162 334" />
+    <path class="tracery-line tracery-fine tracery-delay-3" d="M632 314 C680 288 742 294 818 334" />
+  </g>
+
+  <g class="tracery-glints">
+    <path class="tracery-glint" d="M210 220 C310 164 390 132 490 116 C590 132 670 164 770 220" />
+    <path class="tracery-glint tracery-delay-2" d="M320 360 C402 304 446 254 490 162 C534 254 578 304 660 360" />
+  </g>
+
+  <g class="tracery-knots">
+    <circle cx="490" cy="32" r="3.5" />
+    <circle cx="490" cy="116" r="3" />
+    <circle cx="490" cy="204" r="3" />
+    <circle cx="332" cy="62" r="2.4" />
+    <circle cx="648" cy="62" r="2.4" />
+    <circle cx="210" cy="220" r="2.2" />
+    <circle cx="770" cy="220" r="2.2" />
+    <circle cx="162" cy="334" r="2.2" />
+    <circle cx="818" cy="334" r="2.2" />
+  </g>
+</svg>
+
+<style>
+  .pricing-tracery {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #2a4e4a;
+    --tracery-muted: rgba(42, 78, 74, .58);
+    --tracery-bright: rgba(42, 78, 74, .96);
+    --tracery-soft: rgba(42, 78, 74, .18);
+    opacity: .28;
+    animation: pricing-tracery-idle 12s ease-in-out infinite;
+  }
+
+  .tracery-stop-muted { stop-color: var(--tracery-muted); }
+  .tracery-stop-bright { stop-color: var(--tracery-bright); }
+  .tracery-stop-soft { stop-color: var(--tracery-soft); }
+
+  .tracery-line,
+  .tracery-glint {
+    vector-effect: non-scaling-stroke;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .tracery-line {
+    stroke: url(#pricing-tracery-main);
+    stroke-width: 2.8;
+  }
+
+  .tracery-fine {
+    stroke-width: 1.7;
+    opacity: .92;
+  }
+
+  .tracery-glint {
+    stroke: url(#pricing-tracery-glint);
+    stroke-width: 1.6;
+    opacity: .82;
+  }
+
+  .tracery-knots {
+    fill: currentColor;
+    opacity: .72;
+  }
+
+  .tracery-delay-1 { animation-delay: .14s, 1.84s; }
+  .tracery-delay-2 { animation-delay: .28s, 1.98s; }
+  .tracery-delay-3 { animation-delay: .42s, 2.12s; }
+  .tracery-slow { animation-duration: 2.1s, 7s; }
+
+  :global(html.dark) .pricing-tracery {
+    color: var(--gold-bright);
+    --tracery-muted: rgba(226, 185, 106, .62);
+    --tracery-bright: rgba(255, 222, 142, .96);
+    --tracery-soft: rgba(226, 185, 106, .24);
+    opacity: .34;
+  }
+
+  @keyframes pricing-tracery-idle {
+    0%, 100% { opacity: .24; }
+    50% { opacity: .3; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pricing-tracery {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,118 @@
+---
+---
+
+<svg
+  class="cta-tracery"
+  viewBox="0 0 1120 420"
+  fill="none"
+  preserveAspectRatio="xMidYMid meet"
+  aria-hidden="true"
+>
+  <defs>
+    <linearGradient id="cta-tracery-main" x1="120" y1="350" x2="1000" y2="58" gradientUnits="userSpaceOnUse">
+      <stop class="tracery-stop-soft" offset="0" />
+      <stop class="tracery-stop-bright" offset="0.5" />
+      <stop class="tracery-stop-soft" offset="1" />
+    </linearGradient>
+    <linearGradient id="cta-tracery-thread" x1="180" y1="88" x2="940" y2="338" gradientUnits="userSpaceOnUse">
+      <stop class="tracery-stop-muted" offset="0" />
+      <stop class="tracery-stop-bright" offset="0.45" />
+      <stop class="tracery-stop-muted" offset="1" />
+    </linearGradient>
+  </defs>
+
+  <g>
+    <path class="tracery-line tracery-wide" d="M-40 280 C120 164 250 116 410 178 C510 216 594 216 710 164 C840 106 978 154 1160 270" />
+    <path class="tracery-line tracery-delay-1" d="M-18 344 C146 242 286 220 420 266 C520 300 604 300 710 252 C858 186 992 228 1138 342" />
+    <path class="tracery-line tracery-delay-2" d="M68 118 C214 230 330 278 482 228 C560 202 638 196 724 234 C846 288 966 248 1060 128" />
+    <path class="tracery-line tracery-delay-3" d="M126 392 C250 292 344 156 498 86 C556 60 606 60 662 88 C812 166 906 294 1006 392" />
+    <path class="tracery-line tracery-fine" d="M198 44 C302 142 390 174 482 154 C552 138 624 134 700 158 C804 190 892 154 986 52" />
+    <path class="tracery-line tracery-fine tracery-delay-2" d="M242 382 C332 300 412 260 560 260 C708 260 790 302 878 382" />
+  </g>
+
+  <g class="tracery-glints">
+    <path class="tracery-glint" d="M126 392 C280 254 392 204 560 204 C728 204 840 254 1006 392" />
+    <path class="tracery-glint tracery-delay-2" d="M198 44 C342 176 442 220 560 220 C678 220 780 176 986 52" />
+  </g>
+
+  <g class="tracery-knot-row">
+    <circle cx="410" cy="178" r="2.8" />
+    <circle cx="560" cy="204" r="3.2" />
+    <circle cx="710" cy="164" r="2.8" />
+    <circle cx="420" cy="266" r="2.4" />
+    <circle cx="710" cy="252" r="2.4" />
+  </g>
+</svg>
+
+<style>
+  .cta-tracery {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #2a4e4a;
+    --tracery-soft: rgba(42, 78, 74, .26);
+    --tracery-muted: rgba(42, 78, 74, .52);
+    --tracery-bright: rgba(42, 78, 74, .9);
+    opacity: .2;
+    animation: cta-tracery-idle 13s ease-in-out infinite;
+  }
+
+  .tracery-stop-soft { stop-color: var(--tracery-soft); }
+  .tracery-stop-muted { stop-color: var(--tracery-muted); }
+  .tracery-stop-bright { stop-color: var(--tracery-bright); }
+
+  .tracery-line,
+  .tracery-glint {
+    vector-effect: non-scaling-stroke;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .tracery-line {
+    stroke: url(#cta-tracery-main);
+    stroke-width: 2.15;
+  }
+
+  .tracery-wide {
+    stroke-width: 2.65;
+  }
+
+  .tracery-fine {
+    stroke-width: 1.3;
+    opacity: .76;
+  }
+
+  .tracery-glint {
+    stroke: url(#cta-tracery-thread);
+    stroke-width: 1.15;
+    opacity: .7;
+  }
+
+  .tracery-knot-row {
+    fill: currentColor;
+    opacity: .5;
+  }
+
+  .tracery-delay-1 { animation-delay: .16s, 2.36s; }
+  .tracery-delay-2 { animation-delay: .32s, 2.52s; }
+  .tracery-delay-3 { animation-delay: .48s, 2.68s; }
+
+  :global(html.dark) .cta-tracery {
+    color: var(--gold-bright);
+    --tracery-soft: rgba(226, 185, 106, .2);
+    --tracery-muted: rgba(226, 185, 106, .48);
+    --tracery-bright: rgba(255, 222, 142, .92);
+    opacity: .26;
+  }
+
+  @keyframes cta-tracery-idle {
+    0%, 100% { opacity: .18; }
+    50% { opacity: .22; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-tracery {
+      animation: none;
+    }
+  }
+</style>

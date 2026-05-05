@@ -21,8 +21,7 @@ const { t } = Astro.props;
 
 <style>
   .forwho-section { padding: 35px; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 220px; gap: 48px; background: var(--ivory2); }
-  .forwho-headline { max-width: 520px; }
-  .forwho-headline { order: 2; align-self: start; }
+  .forwho-headline { max-width: 520px; order: 2; align-self: center;  }
   .forwho-headline h2 { font-size: 32px; font-weight: 700; line-height: 1.25; margin-bottom: 8px; }
   .forwho-headline .headline-script { font-size: 15px; margin-top: 10px; line-height: 1.5; }
   .headline-script { font-style: italic; color: var(--teal-dark); white-space: pre-line; }
@@ -35,9 +34,7 @@ const { t } = Astro.props;
 
   @media (max-width: 760px) {
     .forwho-section { grid-template-columns: 1fr; gap: 24px; padding: 56px 24px; }
-    .forwho-headline { max-width: none; }
-    .forwho-headline { order: 1; }
-    .forwho-headline { text-align: center; }
+    .forwho-headline { max-width: none;order: 1; text-align: center; }
     .forwho-headline h2 { font-size: 28px; }
     .headline-script { text-align: center; white-space: normal; text-wrap: balance; }
     .forwho-cards { order: 2; }

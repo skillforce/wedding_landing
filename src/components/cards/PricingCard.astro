@@ -19,12 +19,12 @@ const { plan } = Astro.props;
   <div class="pricing-plan-sub">{plan.sub}</div>
   <div class="pricing-price">
     <span class="currency">$</span>
-    <span class="amount serif">{plan.price}</span>
+    <span class="amount">{plan.price}</span>
     <span class="period">/ {plan.period}</span>
   </div>
   <p class="pricing-desc">{plan.desc}</p>
   <Button
-    type={plan.featured ? ButtonType.Primary : ButtonType.Secondary}
+    type={ButtonType.Primary}
     size="compact"
     fullWidth
   >
@@ -69,9 +69,9 @@ const { plan } = Astro.props;
   .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(185,135,95,.16); }
   .pricing-plan { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
   .pricing-plan-sub { font-size: 12px; color: var(--text-soft); font-style: italic; margin-bottom: 16px; }
-  .pricing-price { display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; }
-  .pricing-price .amount { font-size: 42px; font-weight: 700; line-height: 1; }
-  .pricing-price .currency { font-size: 18px; font-weight: 700; align-self: start; margin-top: 6px; }
+  .pricing-price { display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; font-family: var(--font-sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif); font-variant-numeric: tabular-nums; }
+  .pricing-price .amount { font-size: 42px; font-weight: 700; line-height: 1; letter-spacing: 0; }
+  .pricing-price .currency { font-size: 24px; font-weight: 700; align-self: start; margin-top: 6px; }
   .pricing-price .period { font-size: 12px; color: var(--text-soft); margin-left: 2px; }
   .pricing-desc { font-size: 15px; color: var(--text-mid); margin: 20px 0; line-height: 1.5; }
   .pricing-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--teal-dark); color: #fff; font-size: 10px; font-weight: 700; padding: 3px 12px; border-radius: 10px; letter-spacing: 0.5px; white-space: nowrap; }
