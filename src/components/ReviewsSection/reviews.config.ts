@@ -8,82 +8,79 @@ export interface Review {
   review: string;
 }
 
-const avatar = (bg: string, accent: string, initials: string) =>
-  `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><rect width="96" height="96" rx="28" fill="${encodeURIComponent(bg)}"/><circle cx="48" cy="36" r="18" fill="${encodeURIComponent(accent)}" opacity=".9"/><path d="M20 86c5-20 19-31 28-31s23 11 28 31" fill="${encodeURIComponent(accent)}" opacity=".55"/><text x="48" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="white">${encodeURIComponent(initials)}</text></svg>`;
-
 export const reviews: Record<ReviewLocale, Review[]> = {
   en: [
     {
       name: "Emma & Daniel Reed",
       role: "couple",
-      photo: avatar("#efe3d4", "#b9875f", "ER"),
+      photo: "/images/avatars/avatar-daniel.avif",
       review:
-        "Doctor Wedding gave us one calm place for guests, seating, budget, and the timeline. We stopped losing details in chats and actually enjoyed the last month before the wedding.",
+        "Two months out we were drowning in spreadsheets and group chats. Doctor Wedding pulled everything — guests, seating, the whole timeline — into one place, and we finally stopped managing chaos and started actually looking forward to the day.",
     },
     {
       name: "Sophia Miller",
       role: "organizer",
-      photo: avatar("#f1e4bf", "#c9a84c", "SM"),
+      photo: "/images/avatars/avatar-sophia.avif",
       review:
-        "I manage twelve weddings at the same time, and the shared workspace made status checks much faster. My assistant and I now update tasks once instead of repeating everything across spreadsheets.",
+        "Running twelve weddings at once, I used to spend half my week just chasing updates. Now my assistant and I share one workspace and I always know exactly where every event stands — no status calls needed.",
     },
     {
       name: "Olivia Bennett",
       role: "organizer",
-      photo: avatar("#dfe7f6", "#6a7a9a", "OB"),
+      photo: "/images/avatars/avatar-olivia.avif",
       review:
-        "The guest list and RSVP flow saved hours every week. I can see changes immediately, assign follow-ups, and keep couples informed without another long email thread.",
+        "Guest lists used to mean four versions of the same file and a full inbox every Monday. The confirmation tracking alone reclaimed hours — I see who responded, who needs a nudge, and the couple stays updated automatically.",
     },
     {
       name: "Maya Collins",
       role: "organizer",
-      photo: avatar("#f2dfd3", "#b8943f", "MC"),
+      photo: "/images/avatars/avatar-maya.avif",
       review:
-        "Budget planning became much cleaner for our team. Vendor payments, estimates, and final numbers are easier to compare, so our planning meetings stay focused.",
+        "Our budget reviews always started with 'wait, is this the latest version?' That doesn't happen anymore. Deposits, estimates, what's still outstanding — one view, and our planning calls actually end on time.",
     },
     {
       name: "Isabella Hart",
       role: "organizer",
-      photo: avatar("#e7e0f0", "#7a6a9a", "IH"),
+      photo: "/images/avatars/avatar-isabella.avif",
       review:
-        "Timeline coordination is where we felt the biggest gain. Everyone sees the same schedule, and last-minute changes no longer require ten separate calls.",
+        "The day-of timeline is where weddings succeed or fall apart. Since switching, every vendor and family member works from the same schedule. A last-minute change used to mean twenty calls — now it's one update.",
     },
   ],
   ru: [
     {
       name: "Анна и Максим Волковы",
       role: "couple",
-      photo: avatar("#efe3d4", "#b9875f", "АВ"),
+      photo: "/images/avatars/avatar-daniel.avif",
       review:
-        "Doctor Wedding собрал гостей, рассадку, бюджет и тайминг в одном спокойном месте. Мы перестали искать детали в чатах и наконец спокойно готовились к свадьбе.",
+        "За два месяца до свадьбы мы буквально тонули в таблицах и переписках. Doctor Wedding собрал всё в одном месте — гостей, рассадку, тайминг — и мы наконец перестали просто справляться и начали по-настоящему ждать этого дня.",
     },
     {
       name: "Екатерина Смирнова",
       role: "organizer",
-      photo: avatar("#f1e4bf", "#c9a84c", "ЕС"),
+      photo: "/images/avatars/avatar-sophia.avif",
       review:
-        "Я веду несколько свадеб параллельно, и рабочее пространство сильно ускорило контроль статусов. Команда обновляет задачи один раз, без дублирования в таблицах.",
+        "Когда ведёшь двенадцать свадеб одновременно, половина дня уходит только на то, чтобы понять, где что стоит. Теперь мы с помощницей работаем в одном пространстве — я открываю проект и сразу вижу всю картину.",
     },
     {
       name: "Мария Орлова",
       role: "organizer",
-      photo: avatar("#dfe7f6", "#6a7a9a", "МО"),
+      photo: "/images/avatars/avatar-olivia.avif",
       review:
-        "Список гостей и RSVP экономят часы каждую неделю. Я сразу вижу изменения, назначаю follow-up и держу пару в курсе без длинных переписок.",
+        "Список гостей — это всегда было несколько версий файла и полный ящик сообщений по понедельникам. Одно только отслеживание подтверждений сэкономило мне несколько часов в неделю, а пара получает обновления сама.",
     },
     {
       name: "Полина Коваль",
       role: "organizer",
-      photo: avatar("#f2dfd3", "#b8943f", "ПК"),
+      photo: "/images/avatars/avatar-maya.avif",
       review:
-        "Бюджет стал намного прозрачнее для команды. Предоплаты, оценки и финальные суммы проще сравнивать, поэтому встречи проходят быстрее и по делу.",
+        "Наши встречи по бюджету всегда начинались с вопроса «это актуальная версия?». Теперь нет. Авансы, оценки, что ещё не оплачено — всё в одном месте, и мы наконец укладываемся в отведённое время.",
     },
     {
       name: "Дарья Лебедева",
       role: "organizer",
-      photo: avatar("#e7e0f0", "#7a6a9a", "ДЛ"),
+      photo: "/images/avatars/avatar-isabella.avif",
       review:
-        "Самый заметный эффект был в тайминге дня. Все видят один и тот же план, а срочные изменения больше не требуют десятка отдельных звонков.",
+        "Тайминг дня — это то, от чего зависит всё. Раньше любое изменение означало двадцать звонков. Теперь обновляешь один раз — и все: поставщики, семья, команда — видят актуальный план.",
     },
   ],
 };

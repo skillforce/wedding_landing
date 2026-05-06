@@ -194,7 +194,7 @@ export const en: Translations = {
     headline: "Your wedding plan, clearly in view",
     scriptLine: "Guests, seating, budget, and timeline stay organized in one calm workspace.",
     cta: "See how it works",
-    tabs: ["Day Plan", "Guests", "Seating", "Budget", "Checklist"],
+    tabs: ["Guests", "Seating", "Budget", "Checklist", "Day Plan"],
     panels: {
       seating: {
         title: "Seating Layout",
@@ -390,7 +390,7 @@ export const ru: Translations = {
     headline: "Вся свадьба — в одном понятном плане",
     scriptLine: "Гости, рассадка, бюджет и тайминг всегда под рукой.",
     cta: "Как это работает",
-    tabs: ["День", "Гости", "Рассадка", "Бюджет", "Чеклист"],
+    tabs: ["Гости", "Рассадка", "Бюджет", "Чеклист", "День"],
     panels: {
       seating: {
         title: "План рассадки",

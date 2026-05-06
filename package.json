@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "doctor-wedding-landing",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -9,14 +9,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "format": "biome format --write ."
+    "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.1.10",
-    "astro-theme-toggle": "^0.8.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^2.4.13"
+    "astro": "6.2.2",
+    "astro-theme-toggle": "0.8.0"
   }
 }

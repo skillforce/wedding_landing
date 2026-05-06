@@ -1,6 +1,5 @@
 ---
 import VideoTabBar from "./VideoTabBar.astro";
-import IconPlay from "../icons/IconPlay.astro";
 
 interface Tab {
   label: string;
@@ -27,45 +26,30 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
       <video
         class:list={["tab-video", { active: i === 0 }]}
         src={tab.video}
-        preload="none"
+        preload={i === 0 ? "auto" : "none"}
         muted
         loop
         playsinline
+        autoplay={i === 0}
         draggable="false"
         aria-label={tab.label}
       />
     ))}
-    <button class="play-btn" aria-label="Play">
-      <IconPlay />
-    </button>
   </div>
 </div>
 
 <script>
   document.querySelectorAll<HTMLElement>("[data-video-tabs]").forEach(videoTabs => {
-    const tabs      = videoTabs.querySelectorAll<HTMLButtonElement>(".tab");
-    const videos    = videoTabs.querySelectorAll<HTMLVideoElement>(".tab-video");
-    const playBtn   = videoTabs.querySelector<HTMLButtonElement>(".play-btn");
-    const panelBody = videoTabs.querySelector<HTMLElement>(".panel-body");
-    let firstVideoPlayed = false;
+    const tabs   = videoTabs.querySelectorAll<HTMLButtonElement>(".tab");
+    const videos = videoTabs.querySelectorAll<HTMLVideoElement>(".tab-video");
+    const initialVideo = videoTabs.querySelector<HTMLVideoElement>(".tab-video.active");
 
     function playVideo(video: HTMLVideoElement) {
       if (video.preload === "none") video.preload = "auto";
       video.play().catch(() => {});
     }
 
-    function showPlayBtn() { playBtn?.classList.add("visible"); }
-    function hidePlayBtn() { playBtn?.classList.remove("visible"); }
-
-    // First tab requires an explicit play click
-    showPlayBtn();
-
-    playBtn?.addEventListener("click", () => {
-      firstVideoPlayed = true;
-      hidePlayBtn();
-      panelBody?.classList.add("playing");
-      playVideo(videos[0] as HTMLVideoElement);
-    });
+    if (initialVideo) playVideo(initialVideo);
 
     // Pause / resume active video on scroll in/out of view
     const observer = new IntersectionObserver(
@@ -74,10 +58,7 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
           const active = videoTabs.querySelector<HTMLVideoElement>(".tab-video.active");
           if (!active) return;
           if (entry.isIntersecting) {
-            // Only autoplay if the user has already interacted with the first video
-            // (or if a non-first tab is active)
-            const activeIndex = Array.from(videos).indexOf(active);
-            if (activeIndex !== 0 || firstVideoPlayed) playVideo(active);
+            playVideo(active);
           } else {
             active.pause();
           }
@@ -123,12 +104,7 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
         const nextVideo = videos[i] as HTMLVideoElement;
         nextVideo.classList.add("active");
 
-        if (i === 0 && !firstVideoPlayed) {
-          showPlayBtn();
-        } else {
-          hidePlayBtn();
-          playVideo(nextVideo);
-        }
+        playVideo(nextVideo);
       });
     });
   });
@@ -162,12 +138,9 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
 
   .panel-body {
     position: relative;
-    background: var(--ivory2) url("/images/features/dikhololo_night.avif") center / cover no-repeat;
+    background: var(--ivory2);
     aspect-ratio: 16 / 7;
     overflow: hidden;
-  }
-  .panel-body.playing {
-    background: var(--ivory2);
   }
 
   .tab-video {
@@ -182,48 +155,10 @@ const panelDots = ["panel-dot-red", "panel-dot-yellow", "panel-dot-gold"];
   }
   .tab-video.active { opacity: 1; }
 
-  .play-btn {
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.92);
-    color: var(--teal-dark);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.15s ease;
-    z-index: 2;
-  }
-  .play-btn svg { width: 24px; height: 24px; margin-left: 3px; }
-  .play-btn.visible { opacity: 1; pointer-events: auto; }
-  .play-btn:hover { transform: scale(1.08); }
-  .play-btn:active { transform: scale(0.96); }
-
-  :global(html.dark) .play-btn {
-    background: rgba(22, 32, 54, 0.92);
-    color: var(--gold);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  }
-
-  @media (max-width: 480px) {
-    .play-btn { width: 48px; height: 48px; }
-    .play-btn svg { width: 20px; height: 20px; }
-  }
-
   :global(html.dark) .panel-header {
     background: rgba(14, 20, 36, 0.8);
     border-bottom-color: rgba(184, 148, 63, 0.18);
   }
-  :global(html.dark) .panel-body.playing { background: rgba(10, 14, 26, 0.6); }
-
   @media (max-width: 760px) {
     .panel-header { padding: 9px 12px; gap: 10px; }
     .panel-dot { width: 9px; height: 9px; }

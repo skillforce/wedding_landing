@@ -76,8 +76,8 @@ const { t } = Astro.props;
   .hero-title-line2 { font-size: 73px; line-height: 1.1; display: block; margin-bottom: 20px; color: var(--teal-dark); transition: color 0.2s; }
   :global(html.dark) .hero-title-line1 { color: #fff; }
   :global(html.dark) .hero-title-line2 { color: var(--gold-bright); }
-  .hero-sub { font-size: 17px; line-height: 1.65; max-width: 380px; margin: 0 auto 28px; color: var(--text-mid); transition: color 0.2s; }
-  :global(html.dark) .hero-sub { color: #9ba8c0; }
+  .hero-sub { font-size: 16px; font-weight: 600; line-height: 1.5; max-width: 380px; margin: 0 auto 28px; color: var(--text-dark); text-shadow: 0 1px 10px rgba(255, 255, 255, 0.65); transition: color 0.2s; }
+  :global(html.dark) .hero-sub { color: rgba(240, 230, 210, 0.92); font-weight: 400; text-shadow: 0 1px 14px rgba(0, 0, 0, 0.6); }
 
   .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 
